@@ -7,6 +7,7 @@ TEMPLATE.  INSERT TAGLINE HERE.
 :Version: 0.1.0
 
 .. index: README
+.. image:: https://travis-ci.org/Kwpolska/python-project-template.png?branch=master
 
 PURPOSE
 -------
