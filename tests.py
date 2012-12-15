@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 # TEMPLATE test suite
 # Copyright © 2012, Kwpolska.
