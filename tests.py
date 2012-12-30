@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 # TEMPLATE test suite
-# Copyright © 2012, Kwpolska.
+# Copyright © 2013, Kwpolska.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without

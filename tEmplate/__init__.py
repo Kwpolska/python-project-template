@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 # TEMPLATE v0.1.0
 # INSERT TAGLINE HERE.
-# Copyright © 2012, Kwpolska.
+# Copyright © 2013, Kwpolska.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -39,7 +39,7 @@
 
     INSERT TAGLINE HERE.
 
-    :Copyright: © 2012, Kwpolska.
+    :Copyright: © 2013, Kwpolska.
     :License: BSD (see /LICENSE).
 """
 
