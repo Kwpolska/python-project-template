@@ -1,7 +1,6 @@
 #!/bin/zsh
 project="tEmplate"
 projectc="TEMPLATE"
-aurcat="none"
 
 version=$1
 if [[ $version = '' ]]; then
@@ -22,14 +21,72 @@ sed "s/:Version: .*/:Version: $version/g" docs/*.rst -i
 sed "s/# $projectc v.*/# $projectc v$version/" $project/*.py -i
 sed "s/__version__ = .*/__version__ = '$version'/g" $project/__init__.py -i
 sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD -i
-sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD-2 -i
 sed "s/pkgver=.*/pkgver=$datep/g" PKGBUILD-git -i
-sed "s/pkgver=.*/pkgver=$datep/g" PKGBUILD-2-git -i
 sed "s/:Date: .*/:Date: $date/g" docs/*.rst -i
+
+###: python2-$project{,-git} packages
+#sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD-2 -i
+#sed "s/pkgver=.*/pkgver=$datep/g" PKGBUILD-2-git -i
 
 cp docs/README.rst docs/CHANGELOG.rst docs/CONTRIBUTING.rst .
 cp docs/README.rst README
 
+###: Locale Generation
+#xgettext -c ./$project/*.py -o ./messages.pot
+#
+#sed '1,+17d' ./messages.pot > ./messages.pot.tmp
+#
+#pot='# '$projectc' pot file.
+## Copyright © 2013, Kwpolska.
+## This file is distributed under the same license as the '$projectc' package.
+## Kwpolska <kwpolska@kwpolska.tk>, 2013.
+##
+#msgid ""
+#msgstr ""
+#"Project-Id-Version: #version\\n"
+#"Report-Msgid-Bugs-To: Kwpolska <kwpolska@kwpolska.tk>\\n"
+#"POT-Creation-Date: #datel\\n"
+#"PO-Revision-Date: #datel\\n"
+#"Last-Translator: Kwpolska <kwpolska@kwpolska.tk>\\n"
+#"Language-Team: Kwpolska <kwpolska@kwpolska.tk>\\n"
+#"Language: en\\n"
+#"MIME-Version: 1.0\\n"
+#"Content-Type: text/plain; charset=UTF-8\\n"
+#"Content-Transfer-Encoding: 8bit\\n"'
+#
+#echo $pot > messages.pot
+#cat ./messages.pot.tmp >> messages.pot
+#rm ./messages.pot.tmp
+#
+#sed "s/#version/$version/g" messages.pot -i
+#sed "s/#datel/$datel/g" messages.pot -i
+#
+#for i in ./locale/*; do
+#    language=$(basename $i)
+#
+#    podir="./locale/$language/LC_MESSAGES"
+#    popath="./locale/$language/LC_MESSAGES/$project.po"
+#    sed 's/\"Project-Id-Version: .*/\"Project-Id-Version: '$version'\\n\"/' $popath -i
+#    msgmerge $popath messages.pot -o $popath
+#    fuzzy=$(cat $popath | grep -c '#, fuzzy')
+#    empty=$(cat $popath | pcregrep -cM 'msgstr ""\n$')
+#    if [ $fuzzy != '0' ]; then
+#        echo "WARNING: $fuzzy fuzzy strings in language $language."
+#    fi
+#
+#    if [ $empty != '0' ]; then
+#        echo "WARNING: $empty empty strings in language $language."
+#    fi
+#
+#    echo "$language: [enter] to edit, [c] to continue"
+#    read validatesure
+#    if [[ $validatesure != 'c' ]]; then
+#        $EDITOR $popath
+#    fi
+#    msgfmt -o $podir/$project.mo $popath
+#done
+
+###: Testing and building
 python -c "import $project"
 if [[ $? = 1 ]]; then
     echo "Import failed.  Fix your code or don't come back."
@@ -47,25 +104,39 @@ read bailout
 
 ./setup.py sdist upload
 
+###: AUR Package Creation
 md5out=$(md5sum 'dist/'$project'-'$version'.tar.gz'|awk '{print $1}')
 sed "s/md5sums=.*/md5sums=('$md5out')/" PKGBUILD -i
-sed "s/md5sums=.*/md5sums=('$md5out')/" PKGBUILD-2 -i
-rm -rf MKPKGBUILD
-mkdir -p MKPKGBUILD/python{,2}'-'$project{,-git}
-cp PKGBUILD MKPKGBUILD/python-$project
-cp PKGBUILD-2 MKPKGBUILD/python2-$project/PKGBUILD
-cp PKGBUILD-git MKPKGBUILD/python-$project"-git/PKGBUILD"
-cp PKGBUILD-2-git MKPKGBUILD/python2-$project"-git/PKGBUILD"
-cd MKPKGBUILD
-tar -czvf python-$project.src.tar.gz python-$project
-tar -czvf python2-$project.src.tar.gz python-$project
-tar -czvf python-$project"-git".src.tar.gz python-$project"-git"
-tar -czvf python2-$project"-git".src.tar.gz python-$project"-git"
-burp -u Kwpolska -c $aurcat python{,2}$project"-"{,-git}.src.tar.gz
+###: python2-$project package
+#sed "s/md5sums=.*/md5sums=('$md5out')/" PKGBUILD-2 -i
 
+rm -rf MKPKGBUILD
+mkdir MKPKGBUILD
+cd MKPKGBUILD
+
+###: $project{,-git} packages
+#mkdir $project{,-git}
+#cp ../PKGBUILD ./$project
+#cp ../PKGBUILD-git ./$project"-git/PKGBUILD"
+#tar -czvf $project.src.tar.gz $project
+#tar -czvf $project"-git".src.tar.gz $project"-git"
+
+###: python{2,}-$project{,-git} packages
+#mkdir python{,2}'-'$project{,-git}
+#cp ../PKGBUILD ./python-$project
+#cp ../PKGBUILD-git ./python-$project"-git/PKGBUILD"
+#cp ../PKGBUILD-2 ./python2-$project/PKGBUILD
+#cp ../PKGBUILD-2-git ./python2-$project"-git/PKGBUILD"
+#tar -czvf python-$project.src.tar.gz python-$project
+#tar -czvf python2-$project.src.tar.gz python-$project
+#tar -czvf python-$project"-git".src.tar.gz python-$project"-git"
+#tar -czvf python2-$project"-git".src.tar.gz python-$project"-git"
+
+aurploader -a *.src.tar.gz
 cd ..
 rm -rf MKPKGBUILD
 
+###: git commit
 if [[ $2 != '-c' ]]; then
     echo 'Commit message (sans the version?)'
     echo -n '> '
