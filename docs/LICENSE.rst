@@ -3,12 +3,12 @@ Appendix B. License for TEMPLATE
 ================================
 :Info: This is the license for TEMPLATE.
 :Author: Kwpolska <kwpolska@kwpolska.tk>
-:Date: 2012-11-05
-:Version: 0.0.999
+:Date: 2013-01-19
+:Version: 0.1.0
 
 .. index:: LICENSE
 
-Copyright © 2012, Kwpolska.
+Copyright © 2013, Kwpolska.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

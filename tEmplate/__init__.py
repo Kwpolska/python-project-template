@@ -55,5 +55,5 @@ __docformat__ = 'restructuredtext en'
 
 
 class TEMPLATEError(Exception):
-    """Exceptions raised by the TEMPLATE."""
+    """Exceptions raised by TEMPLATE."""
     pass
