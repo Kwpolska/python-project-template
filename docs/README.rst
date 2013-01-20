@@ -3,7 +3,7 @@ TEMPLATE.  INSERT TAGLINE HERE.
 ===============================
 :Info: This is the README file for TEMPLATE.
 :Author: Kwpolska <kwpolska@kwpolska.tk>
-:Date: 2013-01-01
+:Date: 2013-01-20
 :Version: 0.1.0
 
 .. index: README

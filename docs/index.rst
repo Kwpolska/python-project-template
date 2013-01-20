@@ -5,7 +5,9 @@ TEMPLATE
    :maxdepth: 2
 
    README for TEMPLATE <README>
+   CONTRIBUTING
    LICENSE
+   CHANGELOG
 
 Indices and tables
 ==================

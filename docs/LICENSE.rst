@@ -3,7 +3,7 @@ Appendix B. License for TEMPLATE
 ================================
 :Info: This is the license for TEMPLATE.
 :Author: Kwpolska <kwpolska@kwpolska.tk>
-:Date: 2013-01-19
+:Date: 2013-01-20
 :Version: 0.1.0
 
 .. index:: LICENSE
