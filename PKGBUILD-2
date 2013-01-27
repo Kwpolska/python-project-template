@@ -5,11 +5,11 @@ pkgver=0.1.0
 pkgrel=1
 pkgdesc='INSERT TAGLINE HERE.'
 arch=('any')
-url='https://github.com/Kwpolska/tEmplate'
-license=('BSD')
+url='https://github.com/Kwpolska/${_pyname}'
+license=('???')
 depends=('python2')
 options=(!emptydirs)
-source=("http://pypi.python.org/packages/source/TTTTTT/${pkgname}/${_pyname}-${pkgver}.tar.gz")
+source=("http://pypi.python.org/packages/source/$(echo ${_pyname} | cut -c1)/${_pyname}/${_pyname}-${pkgver}.tar.gz")
 md5sums=('01189998819999197253aa0118999881')
 
 package() {

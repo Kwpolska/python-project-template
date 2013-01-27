@@ -3,17 +3,17 @@ pkgname=python-tEmplate-git
 _pyname=tEmplate
 pkgver=20130109
 pkgrel=1
-pkgdesc='INSERT TAGLINE HERE.  Version from git.'
+pkgdesc='INSERT TAGLINE HERE.  (git version)'
 arch=('any')
-url='https://github.com/Kwpolska/tEmplate'
-license=('BSD')
+url='https://github.com/Kwpolska/${_pyname}'
+license=('???')
 depends=('python')
 makedepends=('git')
 options=(!emptydirs)
-provides=('tEmplate')
-conflicts=('tEmplate')
+provides=('python-tEmplate')
+conflicts=('python-tEmplate')
 
-_gitroot=git://github.com/Kwpolska/tEmplate.git
+_gitroot=git://github.com/AUTHOR/tEmplate.git
 _gitname=tEmplate
 
 package() {
