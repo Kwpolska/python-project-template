@@ -9,7 +9,7 @@
     tEmplate.tEmplate
     ~~~~~~~~~~~~~~~~~
 
-    WTF is this shit?
+    INSERT MODULE DESCRIPTION HERE.
 
     :Copyright: © 2013, Kwpolska.
     :License: BSD (see /LICENSE).
