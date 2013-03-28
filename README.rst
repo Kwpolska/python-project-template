@@ -17,6 +17,7 @@ INSTALLATION
 ------------
 
 ::
+
     pip install tEmplate
 
 Or some system packages (if any).
