@@ -16,6 +16,11 @@ conflicts=('python-tEmplate')
 _gitroot=git://github.com/AUTHOR/tEmplate.git
 _gitname=tEmplate
 
+pkgver() {
+  cd "${srcdir}/${_gitname}"
+  git describe --always | sed 's/-/_/g;s/v//'
+}
+
 package() {
   cd "${srcdir}"
   msg "Connecting to GIT server...."
