@@ -36,7 +36,7 @@ if [[ $? != 0 ]]; then
             echo 'Continuing.'
         fi
 
-rm -rf $PROJECT.egg-info __pycache__ $PROJECT/__pycache__ dist build
+rm -rf $PROJECTLC.egg-info __pycache__ $PROJECTLC/__pycache__ dist build
 
 date=$(date '+%Y-%m-%d')
 datel=$(date '+%Y-%m-%d %H:%M%z')
@@ -45,13 +45,13 @@ datep=$(date '+%Y%m%d')
 sed "s/version=.*/version='$version',/g" setup.py -i
 sed "s/release = .*/release = '$version'/g" docs/conf.py -i
 sed "s/:Version: .*/:Version: $version/g" docs/*.rst -i
-sed "s/# $PROJECTC v.*/# $PROJECTC v$version/" $PROJECT/*.py -i
-sed "s/__version__ = .*/__version__ = '$version'/g" $PROJECT/__init__.py -i
+sed "s/# $PROJECTLCC v.*/# $PROJECTLCC v$version/" $PROJECTLC/*.py -i
+sed "s/__version__ = .*/__version__ = '$version'/g" $PROJECTLC/__init__.py -i
 sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD -i
 sed "s/pkgver=.*/pkgver=$datep/g" PKGBUILD-git -i
 sed "s/:Date: .*/:Date: $date/g" docs/*.rst -i
 
-###: python2-$PROJECT{,-git} packages
+###: python2-$PROJECTLC{,-git} packages
 #sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD-2 -i
 #sed "s/pkgver=.*/pkgver=$datep/g" PKGBUILD-2-git -i
 
@@ -62,7 +62,7 @@ cp docs/README.rst README
 ./.kwproject/localegen
 
 ###: Testing and building
-python -c "import $PROJECT"
+python -c "import $PROJECTLC"
 if [[ $? = 1 ]]; then
     echo "Import failed.  Fix your code or don't come back."
     exit 1
@@ -80,32 +80,32 @@ read bailout
 ./setup.py sdist upload
 
 ###: AUR Package Creation
-md5out=$(md5sum 'dist/'$PROJECT'-'$version'.tar.gz'|awk '{print $1}')
+md5out=$(md5sum 'dist/'$PROJECTLC'-'$version'.tar.gz'|awk '{print $1}')
 sed "s/md5sums=.*/md5sums=('$md5out')/" PKGBUILD -i
-###: python2-$PROJECT package
+###: python2-$PROJECTLC package
 #sed "s/md5sums=.*/md5sums=('$md5out')/" PKGBUILD-2 -i
 
 rm -rf MKPKGBUILD
 mkdir MKPKGBUILD
 cd MKPKGBUILD
 
-###: $PROJECT{,-git} packages
-#mkdir $PROJECT{,-git}
-#cp ../PKGBUILD ./$PROJECT
-#cp ../PKGBUILD-git ./$PROJECT"-git/PKGBUILD"
-#tar -czvf $PROJECT"-0.1.0-1".src.tar.gz $PROJECT
-#tar -czvf $PROJECT"-git-19700101-1".src.tar.gz $PROJECT"-git"
+###: $PROJECTLC{,-git} packages
+#mkdir $PROJECTLC{,-git}
+#cp ../PKGBUILD ./$PROJECTLC
+#cp ../PKGBUILD-git ./$PROJECTLC"-git/PKGBUILD"
+#tar -czvf $PROJECTLC"-0.1.0-1".src.tar.gz $PROJECTLC
+#tar -czvf $PROJECTLC"-git-19700101-1".src.tar.gz $PROJECTLC"-git"
 
-###: python{2,}-$PROJECT{,-git} packages
-#mkdir python{,2}'-'$PROJECT{,-git}
-#cp ../PKGBUILD ./python-$PROJECT
-#cp ../PKGBUILD-git ./python-$PROJECT"-git/PKGBUILD"
-#cp ../PKGBUILD-2 ./python2-$PROJECT/PKGBUILD
-#cp ../PKGBUILD-2-git ./python2-$PROJECT"-git/PKGBUILD"
-#tar -czvf python-$PROJECT"-0.1.0-1".src.tar.gz python-$PROJECT
-#tar -czvf python2-$PROJECT"-0.1.0-1".src.tar.gz python-$PROJECT
-#tar -czvf python-$PROJECT"-git-19700101-1".src.tar.gz python-$PROJECT"-git"
-#tar -czvf python2-$PROJECT"-git-19700101-1".src.tar.gz python-$PROJECT"-git"
+###: python{2,}-$PROJECTLC{,-git} packages
+#mkdir python{,2}'-'$PROJECTLC{,-git}
+#cp ../PKGBUILD ./python-$PROJECTLC
+#cp ../PKGBUILD-git ./python-$PROJECTLC"-git/PKGBUILD"
+#cp ../PKGBUILD-2 ./python2-$PROJECTLC/PKGBUILD
+#cp ../PKGBUILD-2-git ./python2-$PROJECTLC"-git/PKGBUILD"
+#tar -czvf python-$PROJECTLC"-0.1.0-1".src.tar.gz python-$PROJECTLC
+#tar -czvf python2-$PROJECTLC"-0.1.0-1".src.tar.gz python-$PROJECTLC
+#tar -czmf python-$PROJECTLC"-git-19700101-1".src.tar.gz python-$PROJECTLC"-git"
+#tar -czvf python2-$PROJECTLC"-git-19700101-1".src.tar.gz python-$PROJECTLC"-git"
 
 aurploader -a *.src.tar.gz
 cd ..
@@ -123,7 +123,7 @@ else
     cm='y'
 fi
 
-rm -rf $PROJECT.egg-info __pycache__ $PROJECT/__pycache__ dist build
+rm -rf $PROJECTLC.egg-info __pycache__ $PROJECTLC/__pycache__ dist build
 
 git add *
 if [[ $? != 0 ]]; then
