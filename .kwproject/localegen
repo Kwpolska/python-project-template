@@ -1,0 +1,91 @@
+#!/bin/zsh
+. .kwproject.conf
+
+case $LOCALETYPE in
+    'gettext')
+        version=$(cat setup.py | grep 'version=' | sed -e 's/.*version=.//g' -e 's/.,$//g')
+        date=$(date '+%Y-%m-%d')
+        datel=$(date '+%Y-%m-%d %H:%M%z')
+        datep=$(date '+%Y%m%d')
+
+        xgettext -c ./$PROJECT/*.py INSTALL.py localeprovider.py -o ./messages.pot
+
+        sed '1,+17d' ./messages.pot > ./messages.pot.tmp
+
+        pot='# '$PROJECTC' pot file.
+        # Copyright © 2011-2013, Kwpolska.
+        # This file is distributed under the same license as the '$PROJECTC' package.
+        # Kwpolska <kwpolska@kwpolska.tk>, 2011-2013.
+        #
+        msgid ""
+        msgstr ""
+        "Project-Id-Version: #version\\n"
+        "Report-Msgid-Bugs-To: Kwpolska <kwpolska@kwpolska.tk>\\n"
+        "POT-Creation-Date: #datel\\n"
+        "PO-Revision-Date: #datel\\n"
+        "Last-Translator: Kwpolska <kwpolska@kwpolska.tk>\\n"
+        "Language-Team: Kwpolska <kwpolska@kwpolska.tk>\\n"
+        "Language: en\\n"
+        "MIME-Version: 1.0\\n"
+        "Content-Type: text/plain; charset=UTF-8\\n"
+        "Content-Transfer-Encoding: 8bit\\n"'
+
+        echo $pot > messages.pot
+        cat ./messages.pot.tmp >> messages.pot
+        rm ./messages.pot.tmp
+
+        sed "s/#version/$version/g" messages.pot -i
+        sed "s/#datel/$datel/g" messages.pot -i
+
+        for i in ./locale/*; do
+            language=$(basename $i)
+
+            podir="./locale/$language/LC_MESSAGES"
+            popath="./locale/$language/LC_MESSAGES/$PROJECT.po"
+            sed 's/\"Project-Id-Version: .*/\"Project-Id-Version: '$version'\\n\"/' $popath -i
+            msgmerge $popath messages.pot -o $popath
+            fuzzy=$(cat $popath | grep -c '#, fuzzy')
+            empty=$(cat $popath | pcregrep -cM 'msgstr ""\n$')
+            if [ $fuzzy != '0' ]; then
+                echo "WARNING: $fuzzy fuzzy strings in language $language."
+            fi
+
+            if [ $empty != '0' ]; then
+                echo "WARNING: $empty empty strings in language $language."
+            fi
+
+            msgfmt -o $podir/$PROJECT.mo $popath
+        done
+    ;;
+    'pyqt4')
+        pylupdate4 -verbose $PROJECT.pro
+        for i in ./locale/*.ts; do
+            # pylupdate4 is dumb and mangles encodings
+            sed -i -e 's|filename="|filename="../|g' -e \
+            's|&#xe2;&#x80;&#x9c;|“|g' -e 's|&#xe2;&#x80;&#x9d;|”|g' -e \
+            's|&#xe2;&#x80;&#x98;|‘|g' -e 's|&#xe2;&#x80;&#x99;|’|g' -e \
+            's|&#xe2;&#x80;&#xa6;|…|g' -e 's|&#xe2;&#x80;&#x93;|–|g' -e \
+            's|&#xe2;&#x80;&#x94;|—|g' $i
+            done
+            lrelease $PROJECT.pro
+            pyrcc4 -py2 $PROJECT.qrc -o $PROJECT/ui/resources2.py
+            pyrcc4 -py3 $PROJECT.qrc -o $PROJECT/ui/resources3.py
+    'pyside')
+        pyside-lupdate -verbose $PROJECT.pro
+        for i in ./locale/*.ts; do
+            # pyside may be dumb, too
+            sed -i -e 's|filename="|filename="../|g' -e \
+            's|&#xe2;&#x80;&#x9c;|“|g' -e 's|&#xe2;&#x80;&#x9d;|”|g' -e \
+            's|&#xe2;&#x80;&#x98;|‘|g' -e 's|&#xe2;&#x80;&#x99;|’|g' -e \
+            's|&#xe2;&#x80;&#xa6;|…|g' -e 's|&#xe2;&#x80;&#x93;|–|g' -e \
+            's|&#xe2;&#x80;&#x94;|—|g' $i
+            done
+            lrelease $PROJECT.pro
+            pyside-rcc -py2 $PROJECT.qrc -o $PROJECT/ui/resources2.py
+            pyside-rcc -py3 $PROJECT.qrc -o $PROJECT/ui/resources3.py
+
+
+    ;;
+    'none') true ;;
+    *) echo 'ERROR: unknown locale type.'; false
+esac

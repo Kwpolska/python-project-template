@@ -1,15 +1,42 @@
 #!/bin/zsh
-project="tEmplate"
-projectc="TEMPLATE"
+. .kwproject/config
 
-version=$1
-if [[ $version = '' ]]; then
-    echo 'Version number?'
-    echo -n '> '
-    read version
+branch=$(git rev-parse --abbrev-ref HEAD)
+if [[ $? != 0 ]]; then
+    echo 'FATAL: Cannot fetch git version.'
+    exit 2
 fi
 
-rm -rf $project.egg-info __pycache__ $project/__pycache__ dist build
+echo $branch | grep '^release/' > /dev/null
+if [[ $? != 0 ]]; then
+    echo 'FATAL: Not on a git-flow release branch.'
+    exit 2
+fi
+
+version=$(echo $branch | sed 's|^release/||')
+
+echo $version | grep '^[0-9]\{1,\}\.[0-9]\{1,\}\.[0-9]\{1,\}$' > /dev/null
+
+if [[ $? != 0 ]]; then
+    echo $version | grep '^[0-9]\{1,\}\.[0-9]\{1,\}\.[0-9]\{1,\}\-[0-9A-Za-z-]\{1,\}$' > /dev/null
+    if [[ $? != 0 ]]; then
+        echo 'WARNING: version number is not compliant with versioning scheme (Semantic Versioning 2.0)'
+        read  -p 'Continue? [y/N] ' vercont
+        if [[ $vercont == 'y' || $vercont == 'Y' ]]; then
+            echo 'Continuing.'
+        else
+            exit 2
+        fi
+    else
+        echo 'NOTICE: pre-release version number in use.'
+        read  -p 'Continue? [Y/n] ' vercont
+        if [[ $vercont == 'n' || $vercont == 'N' ]]; then
+            exit 2
+        else
+            echo 'Continuing.'
+        fi
+
+rm -rf $PROJECT.egg-info __pycache__ $PROJECT/__pycache__ dist build
 
 date=$(date '+%Y-%m-%d')
 datel=$(date '+%Y-%m-%d %H:%M%z')
@@ -18,13 +45,13 @@ datep=$(date '+%Y%m%d')
 sed "s/version=.*/version='$version',/g" setup.py -i
 sed "s/release = .*/release = '$version'/g" docs/conf.py -i
 sed "s/:Version: .*/:Version: $version/g" docs/*.rst -i
-sed "s/# $projectc v.*/# $projectc v$version/" $project/*.py -i
-sed "s/__version__ = .*/__version__ = '$version'/g" $project/__init__.py -i
+sed "s/# $PROJECTC v.*/# $PROJECTC v$version/" $PROJECT/*.py -i
+sed "s/__version__ = .*/__version__ = '$version'/g" $PROJECT/__init__.py -i
 sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD -i
 sed "s/pkgver=.*/pkgver=$datep/g" PKGBUILD-git -i
 sed "s/:Date: .*/:Date: $date/g" docs/*.rst -i
 
-###: python2-$project{,-git} packages
+###: python2-$PROJECT{,-git} packages
 #sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD-2 -i
 #sed "s/pkgver=.*/pkgver=$datep/g" PKGBUILD-2-git -i
 
@@ -32,62 +59,10 @@ cp docs/README.rst docs/CHANGELOG.rst docs/CONTRIBUTING.rst .
 cp docs/README.rst README
 
 ###: Locale Generation
-#xgettext -c ./$project/*.py -o ./messages.pot
-#
-#sed '1,+17d' ./messages.pot > ./messages.pot.tmp
-#
-#pot='# '$projectc' pot file.
-## Copyright © 2013, Kwpolska.
-## This file is distributed under the same license as the '$projectc' package.
-## Kwpolska <kwpolska@kwpolska.tk>, 2013.
-##
-#msgid ""
-#msgstr ""
-#"Project-Id-Version: #version\\n"
-#"Report-Msgid-Bugs-To: Kwpolska <kwpolska@kwpolska.tk>\\n"
-#"POT-Creation-Date: #datel\\n"
-#"PO-Revision-Date: #datel\\n"
-#"Last-Translator: Kwpolska <kwpolska@kwpolska.tk>\\n"
-#"Language-Team: Kwpolska <kwpolska@kwpolska.tk>\\n"
-#"Language: en\\n"
-#"MIME-Version: 1.0\\n"
-#"Content-Type: text/plain; charset=UTF-8\\n"
-#"Content-Transfer-Encoding: 8bit\\n"'
-#
-#echo $pot > messages.pot
-#cat ./messages.pot.tmp >> messages.pot
-#rm ./messages.pot.tmp
-#
-#sed "s/#version/$version/g" messages.pot -i
-#sed "s/#datel/$datel/g" messages.pot -i
-#
-#for i in ./locale/*; do
-#    language=$(basename $i)
-#
-#    podir="./locale/$language/LC_MESSAGES"
-#    popath="./locale/$language/LC_MESSAGES/$project.po"
-#    sed 's/\"Project-Id-Version: .*/\"Project-Id-Version: '$version'\\n\"/' $popath -i
-#    msgmerge $popath messages.pot -o $popath
-#    fuzzy=$(cat $popath | grep -c '#, fuzzy')
-#    empty=$(cat $popath | pcregrep -cM 'msgstr ""\n$')
-#    if [ $fuzzy != '0' ]; then
-#        echo "WARNING: $fuzzy fuzzy strings in language $language."
-#    fi
-#
-#    if [ $empty != '0' ]; then
-#        echo "WARNING: $empty empty strings in language $language."
-#    fi
-#
-#    echo "$language: [enter] to edit, [c] to continue"
-#    read validatesure
-#    if [[ $validatesure != 'c' ]]; then
-#        $EDITOR $popath
-#    fi
-#    msgfmt -o $podir/$project.mo $popath
-#done
+./.kwproject/localegen
 
 ###: Testing and building
-python -c "import $project"
+python -c "import $PROJECT"
 if [[ $? = 1 ]]; then
     echo "Import failed.  Fix your code or don't come back."
     exit 1
@@ -105,69 +80,69 @@ read bailout
 ./setup.py sdist upload
 
 ###: AUR Package Creation
-md5out=$(md5sum 'dist/'$project'-'$version'.tar.gz'|awk '{print $1}')
+md5out=$(md5sum 'dist/'$PROJECT'-'$version'.tar.gz'|awk '{print $1}')
 sed "s/md5sums=.*/md5sums=('$md5out')/" PKGBUILD -i
-###: python2-$project package
+###: python2-$PROJECT package
 #sed "s/md5sums=.*/md5sums=('$md5out')/" PKGBUILD-2 -i
 
 rm -rf MKPKGBUILD
 mkdir MKPKGBUILD
 cd MKPKGBUILD
 
-###: $project{,-git} packages
-#mkdir $project{,-git}
-#cp ../PKGBUILD ./$project
-#cp ../PKGBUILD-git ./$project"-git/PKGBUILD"
-#tar -czvf $project"-0.1.0-1".src.tar.gz $project
-#tar -czvf $project"-git-19700101-1".src.tar.gz $project"-git"
+###: $PROJECT{,-git} packages
+#mkdir $PROJECT{,-git}
+#cp ../PKGBUILD ./$PROJECT
+#cp ../PKGBUILD-git ./$PROJECT"-git/PKGBUILD"
+#tar -czvf $PROJECT"-0.1.0-1".src.tar.gz $PROJECT
+#tar -czvf $PROJECT"-git-19700101-1".src.tar.gz $PROJECT"-git"
 
-###: python{2,}-$project{,-git} packages
-#mkdir python{,2}'-'$project{,-git}
-#cp ../PKGBUILD ./python-$project
-#cp ../PKGBUILD-git ./python-$project"-git/PKGBUILD"
-#cp ../PKGBUILD-2 ./python2-$project/PKGBUILD
-#cp ../PKGBUILD-2-git ./python2-$project"-git/PKGBUILD"
-#tar -czvf python-$project"-0.1.0-1".src.tar.gz python-$project
-#tar -czvf python2-$project"-0.1.0-1".src.tar.gz python-$project
-#tar -czvf python-$project"-git-19700101-1".src.tar.gz python-$project"-git"
-#tar -czvf python2-$project"-git-19700101-1".src.tar.gz python-$project"-git"
+###: python{2,}-$PROJECT{,-git} packages
+#mkdir python{,2}'-'$PROJECT{,-git}
+#cp ../PKGBUILD ./python-$PROJECT
+#cp ../PKGBUILD-git ./python-$PROJECT"-git/PKGBUILD"
+#cp ../PKGBUILD-2 ./python2-$PROJECT/PKGBUILD
+#cp ../PKGBUILD-2-git ./python2-$PROJECT"-git/PKGBUILD"
+#tar -czvf python-$PROJECT"-0.1.0-1".src.tar.gz python-$PROJECT
+#tar -czvf python2-$PROJECT"-0.1.0-1".src.tar.gz python-$PROJECT
+#tar -czvf python-$PROJECT"-git-19700101-1".src.tar.gz python-$PROJECT"-git"
+#tar -czvf python2-$PROJECT"-git-19700101-1".src.tar.gz python-$PROJECT"-git"
 
 aurploader -a *.src.tar.gz
 cd ..
 rm -rf MKPKGBUILD
 
 ###: git commit
-if [[ $2 != '-c' ]]; then
+if [[ $1 != '-c' ]]; then
     echo 'Commit message (sans the version?)'
     echo -n '> '
     read commitmsg
     if [[ commitmsg = '' ]]; then
-        cm='t'
+        cm='y'
     fi
 else
-    cm='t'
+    cm='y'
 fi
 
-rm -rf $project.egg-info __pycache__ $project/__pycache__ dist build
+rm -rf $PROJECT.egg-info __pycache__ $PROJECT/__pycache__ dist build
 
 git add *
-if [[ $? != '0' ]]; then
+if [[ $? != 0 ]]; then
     echo 'Open another terminal and fix the errors.'
     read dn
     git add *
-    if [[ $? != '0' ]]; then
+    if [[ $? != 0 ]]; then
         echo 'But please test your changes using that other terminal.'
         read dn2
         git add *
     fi
 fi
 
-if [[ $cm = 't' ]]; then
+if [[ $cm = 'y' ]]; then
     git commit -as
 else
     git commit -asm "v$version: $commitmsg"
 fi
 
-git tag -sa "v$version" -m "Version $version"
+git flow release finish $branch
 git push
 git push --tags

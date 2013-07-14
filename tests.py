@@ -33,13 +33,36 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import tEmplate
-import tEmplate.tEmplate
+import tEmplate.template
 import unittest
 
 
 class TestTEMPLATE(unittest.TestCase):
     def test_true(self):
         self.assertTrue(True)
+
+    def test_false(self):
+        self.assertFalse(False)
+
+    def test_trueexpr(self):
+        self.assertTrue(1 == 1)
+
+    def test_falseexpr(self):
+        self.assertFalse(1 == 2)
+
+    def test_maths(self):
+        self.assertEqual(2 + 2, 4)
+        self.assertEqual(2 - 2, 0)
+        self.assertEqual(2 * 2, 4)
+        self.assertEqual(2 / 2, 1)
+        self.assertEqual(3 % 2, 1)
+
+    def test_bitwise(self):
+        self.assertEqual(0b11 ^ 0b10, 0b01)
+        self.assertEqual(0b100 | 0b010, 0b110)
+        self.assertEqual(0b101 & 0b011, 0b001)
+        self.assertEqual(0b10 << 2, 0b1000)
+        self.assertEqual(0b1111 >> 2, 0b11)
 
 if __name__ == '__main__':
     unittest.main()

@@ -11,12 +11,13 @@ TEMPLATE.  INSERT TAGLINE HERE.
 
 PURPOSE
 -------
-This is a TEMPLATE.
+This is a TEMPLATE for Python projects.
 
 INSTALLATION
 ------------
 
 ::
+
     pip install tEmplate
 
 Or some system packages (if any).
@@ -24,6 +25,114 @@ Or some system packages (if any).
 NOTES
 -----
 For more info, refer to the documentation.
+
+USING THE TEMPLATE
+------------------
+
+Requirements
+============
+
+ * ``zsh`` installed (``/release`` and ``.kwproject/localegen`` scripts)
+
+Recommended things
+==================
+
+ * GitHub account (if you do not want GitHub, edit the ``/PKGBUILD{,-2}{,-git}``
+   files and any other places where GitHub is mentioned, including this
+   document which you should edit mentally)
+ * Travis CI account (if you do not want Travis CI, remove ``/.travis.yml``)
+ * `git-flow extensions by nvie <https://github.com/nvie/gitflow>`_ (you need
+   to manually alter the ``/release`` script, and that is much harder than
+   installing the extensions)
+ * AUR account (if you do not want AUR uploads, remove the
+   ``/PKGBUILD{,-2}{,-git}`` files and alter all references in ``/release``)
+ * aurploader (replace it with something else, do it manually, or remove AUR
+   package generation entirely)
+
+Contents
+========
+
+The template contains the following files to get you started:
+
+ * pre-configured Sphinx with:
+
+   * ``CONTRIBUTING.rst`` guide (used by GitHub when sending a pull request or an issue)
+   * ``LICENSE.rst``
+   * an empty ``CHANGELOG.rst``
+   * this (worthless for most people) ``README.rst`` and a bare-bones ``index.rst`` page
+
+ * The exact same files in ``/``, which are fragile and **MAY NOT** be modified
+   as they are replaced with copies in ``/docs`` by the ``release``
+   script
+ * ``__init__.py`` and ``template.py`` files in the Python package directory
+ * A good-enough ``setup.py`` file
+ * ``tests.py`` containing some *Is My Python Sane?*-style tests
+ * A sample ``/usr/bin/`` script
+ * Addons for Qt users
+ * PKGBUILDs for the Arch Linux User Repository (AUR)
+ * A state-of-the-art ``release`` script, the operations of which are:
+
+   * querying the current branch for version number
+   * updating ``/docs/CHANGELOG.rst``
+   * bumping the version number in all the files, changing dates where necessary
+   * copying over ``/docs/README.rst``,  ``/docs/CHANGELOG.rst`` and ``/docs/CONTRIBUTING.rst`` to ``/``
+   * locale generation (via the ``.kwproject/localegen`` script)
+   * running ``import $project`` and the testsuite
+   * creating and uploading AUR packages
+   * commiting into git, finishing the ``git flow`` release
+
+
+Getting up to speed in 14 easy steps
+====================================
+
+1. Create the repository for the project on GitHub and enable it on Travis CI.
+2. Manually change ``Kwpolska`` to your GitHub name in the following files:
+
+   1. ``/docs/README.rst``, line 10
+   2. ``/docs/CHANGELOG.rst``, line 10
+   3. ``/setup.py``, line 14
+   4. ``/PKGBUILD{,-2}{,-git}``, in ``url`` and ``source`` (git only)
+
+3. Manually change the ``Maintainer`` line in ``/PKGBUILD{,-2}{,-git}``.
+4. Replace the following patterns (eg. with sed), in **all** files, **including
+   dotfiles**:
+
+   1. ``TEMPLATE`` with the full name of the project
+   2. ``tEmplate`` with a “s name of the project [a-z0-9\_\\-]
+   3. ``python-project-template`` with the GitHub repo name
+   4. ``kwpolska@.*`` with your e-mail address
+   5. ``Kwpolska`` with your name (affects mostly copyright notices)
+
+4. Rename ``/tEmplate`` to the name used in 4.2.
+5. Modify ``/docs/README.rst`` to reflect your project and not the Template
+   (and make a copy if you are reading it locally from those files)
+6. Copy: (when using the included ``release`` script, it happens automatically)
+
+   1. ``/docs/README.rst`` to ``/README.rst`` and ``/README``
+   2. ``/docs/CHANGELOG.rst`` to ``/CHANGELOG.rst``
+
+7. Modify ``/.kwproject/config``
+8. Modify ``/bin/tEmplate`` and rename it OR remove the directory
+9. Customize ``/setup.py`` to your liking.  You should pay attention to the
+   classifiers and the commented parts.
+10. Customize requirements.txt.
+11. If you are using PyQt4 or PySide, make sure to put your UI code in a ``ui``
+    submodule.  Copy over the ``resources.py`` file to that submodule, even if
+    you are not using resources now.
+12. Remove the ``/QT-ADDONS/`` directory.
+13. If you are using Qt, make sure to create a ``.pro`` file.
+14. Remove ``/.git``, and run the following commands, replacing stuff with ``$``
+    in front::
+
+        git init
+        git remote add origin git@github.com:$GITUSERNAME/$GITREPO
+        git flow init #(change version tag prefix to `v`)
+        git add *
+        git checkout develop
+        git commit -sm 'initial commit via Kwpolska’s Python Project Template'
+        git checkout master
+        git merge --ff-only develop
+        git push -u origin master develop
 
 COPYRIGHT
 ---------

@@ -26,5 +26,5 @@ setup(name='tEmplate',
                    'Programming Language :: Python :: 3.3'],
       packages=['tEmplate'])
       #requires=['stuff'],
-      #scripts=['bin/x'],
+      #scripts=['bin/tEmplate'],
       #data_files=[('file', ['dest']),],
