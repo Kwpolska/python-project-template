@@ -9,4 +9,4 @@ python:
 install:
  - "pip install -r requirements.txt --use-mirrors"
 
-script: ./tests.py
+script: ./setup.py test
