@@ -4,6 +4,7 @@
 # INSERT TAGLINE HERE.
 # Copyright © 2013, Kwpolska.
 # See /LICENSE for licensing information.
+# This file is originally a part of the Python Project Template.
 
 """
     tEmplate.ui.resources

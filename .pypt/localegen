@@ -1,20 +1,52 @@
 #!/bin/zsh
-. .kwproject.conf
+# Kw’s Release Tools/Python Project Template
+# Locale Generator
+# Copyright © 2013, Kwpolska.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions, and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions, and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the author of this software nor the names of
+#    contributors to this software may be used to endorse or promote
+#    products derived from this software without specific prior written
+#    consent.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+. .pypt/config
 
-case $LOCALETYPE in
+case "$LOCALETYPE" in
     'gettext')
         version=$(cat setup.py | grep 'version=' | sed -e 's/.*version=.//g' -e 's/.,$//g')
         date=$(date '+%Y-%m-%d')
         datel=$(date '+%Y-%m-%d %H:%M%z')
         datep=$(date '+%Y%m%d')
 
-        xgettext -c ./$PROJECT/*.py INSTALL.py localeprovider.py -o ./messages.pot
+        xgettext -c ./$PROJECTLC/*.py INSTALL.py localeprovider.py -o ./messages.pot
 
         sed '1,+17d' ./messages.pot > ./messages.pot.tmp
 
-        pot='# '$PROJECTC' pot file.
+        pot='# '$PROJECT' pot file.
         # Copyright © 2011-2013, Kwpolska.
-        # This file is distributed under the same license as the '$PROJECTC' package.
+        # This file is distributed under the same license as the '$PROJECT' package.
         # Kwpolska <kwpolska@kwpolska.tk>, 2011-2013.
         #
         msgid ""
@@ -41,7 +73,7 @@ case $LOCALETYPE in
             language=$(basename $i)
 
             podir="./locale/$language/LC_MESSAGES"
-            popath="./locale/$language/LC_MESSAGES/$PROJECT.po"
+            popath="./locale/$language/LC_MESSAGES/$PROJECTLC.po"
             sed 's/\"Project-Id-Version: .*/\"Project-Id-Version: '$version'\\n\"/' $popath -i
             msgmerge $popath messages.pot -o $popath
             fuzzy=$(cat $popath | grep -c '#, fuzzy')
@@ -54,11 +86,11 @@ case $LOCALETYPE in
                 echo "WARNING: $empty empty strings in language $language."
             fi
 
-            msgfmt -o $podir/$PROJECT.mo $popath
+            msgfmt -o $podir/$PROJECTLC.mo $popath
         done
     ;;
     'pyqt4')
-        pylupdate4 -verbose $PROJECT.pro
+        pylupdate4 -verbose $PROJECTLC.pro
         for i in ./locale/*.ts; do
             # pylupdate4 is dumb and mangles encodings
             sed -i -e 's|filename="|filename="../|g' -e \
@@ -67,11 +99,12 @@ case $LOCALETYPE in
             's|&#xe2;&#x80;&#xa6;|…|g' -e 's|&#xe2;&#x80;&#x93;|–|g' -e \
             's|&#xe2;&#x80;&#x94;|—|g' $i
             done
-            lrelease $PROJECT.pro
-            pyrcc4 -py2 $PROJECT.qrc -o $PROJECT/ui/resources2.py
-            pyrcc4 -py3 $PROJECT.qrc -o $PROJECT/ui/resources3.py
+            lrelease $PROJECTLC.pro
+            pyrcc4 -py2 $PROJECTLC.qrc -o $PROJECTLC/ui/resources2.py
+            pyrcc4 -py3 $PROJECTLC.qrc -o $PROJECTLC/ui/resources3.py
+    ;;
     'pyside')
-        pyside-lupdate -verbose $PROJECT.pro
+        pyside-lupdate -verbose $PROJECTLC.pro
         for i in ./locale/*.ts; do
             # pyside may be dumb, too
             sed -i -e 's|filename="|filename="../|g' -e \
@@ -80,9 +113,9 @@ case $LOCALETYPE in
             's|&#xe2;&#x80;&#xa6;|…|g' -e 's|&#xe2;&#x80;&#x93;|–|g' -e \
             's|&#xe2;&#x80;&#x94;|—|g' $i
             done
-            lrelease $PROJECT.pro
-            pyside-rcc -py2 $PROJECT.qrc -o $PROJECT/ui/resources2.py
-            pyside-rcc -py3 $PROJECT.qrc -o $PROJECT/ui/resources3.py
+            lrelease $PROJECTLC.pro
+            pyside-rcc -py2 $PROJECTLC.qrc -o $PROJECTLC/ui/resources2.py
+            pyside-rcc -py3 $PROJECTLC.qrc -o $PROJECTLC/ui/resources3.py
 
 
     ;;

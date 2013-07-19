@@ -1,0 +1,117 @@
+#!/usr/bin/python
+# Kw’s Release Tools/Python Project Template
+# AUR Uploader
+# Copyright © 2013, Kwpolska.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions, and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions, and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the author of this software nor the names of
+#    contributors to this software may be used to endorse or promote
+#    products derived from this software without specific prior written
+#    consent.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+import json
+import requests
+import getpass
+import sys
+import tarfile
+
+# This was nicely stolen from PKGBUILDer.
+CATEGORIES = ['ERROR', 'none', 'daemons', 'devel', 'editors',
+              'emulators', 'games', 'gnome', 'i18n', 'kde',
+              'lib', 'modules', 'multimedia', 'network',
+              'office', 'science', 'system', 'x11',
+              'xfce', 'kernels']
+
+AURURL = 'https://aur.archlinux.org/'
+SESSION = requests.Session()
+
+if __name__ == '__main__':
+    if sys.version_info[0] == 2:
+        input = raw_input
+
+    username = input('Username: ')
+    password = getpass.getpass('Password: ')
+
+    r = SESSION.post(AURURL + 'login', data={'user': username,
+                                             'passwd': password})
+    sid = SESSION.cookies['AURSID']
+
+    for pkgorder, filename in enumerate(sys.argv[1:]):
+        thandle = tarfile.open(filename, 'r:gz')
+        # Warning: this is fragile.  However, as part of the PyPT, we know that
+        # archives built by the release script have a sane order, allowing us
+        # to drop worthless magic or PKGBUILD parsing.
+        pkgname = thandle.next().name
+        thandle.close()
+
+        try:
+            import pkgbuilder.utils
+            try:
+                category = pkgbuilder.utils.info(pkgname)[0]._categoryid
+            except IndexError:
+                category = None
+        except ImportError:
+            # The user does not have PKGBUILDer installed.  Because PyPT caters
+            # to all sorts of audiences and is meant to be portable, I
+            # copy-pasted PKGBUILDer code down here and used it for the above.
+            # Note that this uses an info requests, something PKGBUILDer does
+            # not do since multiinfo requests were implemented upstream.
+            rpc = AURURL + 'rpc.php?type={0}&arg={1}'
+            r = SESSION.get(rpc.format('info', pkgname))
+            r.raise_for_status()
+            pkgdata = json.loads(r.text)
+            try:
+                category = pkgdata['results']['CategoryID']
+            except TypeError:
+                # The AUR RPC returns an empty list in the 'results' field if
+                # there is no such package and a dict (aka object) in the
+                # 'results' field if the package exists.
+                # Why am I using 'info'?
+                category = None
+        # Now that we are done with this procedure, time to upload them.
+        # But wait: what if the category is `None`  Or if the user chose a
+        # wrong category?                  ↓ because ERROR is invalid (1-19)
+        while category not in range(1, len(CATEGORIES)):
+            catlist = list(enumerate(CATEGORIES[1:], 1))
+            print('Choose a category for {0}.'.format(pkgname))
+            formatted = [catlist[i:i + 5] for i in range(0, len(catlist), 5)]
+            formatted[-1] = formatted[-1] + (5 - len(formatted[-1])) * [('', '')]
+            # 'multimedia' is 10, and we use this as our width.
+            for i in formatted:
+                print('{0[0]:>2}: {0[1]:<10}  {1[0]:>2}: {1[1]:<10}  {2[0]:>2}'
+                      ': {2[1]:<10}  {3[0]:>2}: {3[1]:<10}  {4[0]:>2}: '
+                      '{4[1]:<10}  {5[0]:>2}: {5[1]:<10}'.format(i))
+
+            category = input('Category: ')
+
+        r = SESSION.post(AURURL + 'submit/',
+                         data={'pkgsubmit': 1, 'token': sid,
+                               'category': category},
+                         files={'pfile': open(filename, 'rb')})
+        r.raise_for_status()
+
+# Note that I do not perform any sanity checks.  There is a reason: I believe
+# that PyPT is so awesome and wonderful that it cann— oh wait, stop this
+# bullshit.  I actually had a little Heisenbug in here and removed a sanity check.

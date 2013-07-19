@@ -1,0 +1,29 @@
+#!/bin/bash
+# Human-friendly project name.
+PROJECT="TEMPLATE"
+# Computer-friendly project name, [a-z0-9_\-]
+PROJECTLC="tEmplate"
+
+# Git repository name.  Using $PROJECTLC is recommended.
+GITREPO=$PROJECTLC
+
+# Locale type.  One of:
+# none      Do not generate nor use any locales.
+# gettext   Use GNU gettext (gettext module).
+# pyqt4     Use the Qt locale tools (stock Qt + PyQt4).
+# pyside    Use the Qt locale tools (stock Qt + PySide).
+LOCALETYPE="none"
+
+# Python versions supported.
+PYTHON2=1
+PYTHON3=1
+
+# AUR packages creation mode.  One of:
+# none      Do not create nor upload AUR packages.
+# python    Create python{,2}-$PROJECTLC{,-git} packages (4 in total)
+# app       Create $AURNAME{,-git} packages with Python 3
+AURTYPE="python"
+
+# AUR package name.  Defaults to $PROJECTLC.  Ignored by `python`.
+# WARNING: you still need to edit the PKGBUILDs.
+AURNAME=$PROJECTLC

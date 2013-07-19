@@ -1,0 +1,68 @@
+#!/usr/bin/python
+# Kw’s Release Tools/Python Project Template
+# Commit and Changelog Parser
+# Copyright © 2013, Kwpolska.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions, and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions, and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the author of this software nor the names of
+#    contributors to this software may be used to endorse or promote
+#    products derived from this software without specific prior written
+#    consent.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+# Arguments:
+# FILE BASEDIR OLDVERSION
+
+import re
+from os.path import join as pjoin
+from sys import argv
+from textwrap import indent
+
+with open(argv[1]) as fh:
+    e = re.findall('#~ C(.*?) MESSAGE START ~#\n(.*?)\n#~ C(.*?) MESSAGE '
+                   'END ~#', fh.read(), flags=re.S)
+
+for i in e:
+    i = list(i)
+    if i[0] != i[2]:
+        print('ERROR: mismatched tags')
+        exit(1)
+    else:
+        i[0] = 'C' + i[0]  # regexp hack
+        if i[0] == 'COMMIT':
+            with open(argv[1] + 'commit', 'w') as fh:
+                fh.write(i[1])
+        elif i[0] == 'CHANGELOG':
+            with open(pjoin(argv[2], 'docs', 'CHANGELOG.rst')) as fh:
+                currentfile = fh.read()
+
+            # A bit fragile...
+            currentver = re.search(':Version: (.*)', currentfile).groups()[0]
+            clog = indent(i[1], 4 * ' ')
+
+            with open(pjoin(argv[2], 'docs', 'CHANGELOG.rst'), 'w') as fh:
+                fh.write(currentfile.replace('\n' + currentver,
+                                             '\n{0}\n{1}\n\n{2}'.format(
+                                                 argv[3], clog, currentver)))
