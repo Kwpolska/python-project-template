@@ -78,8 +78,7 @@ if __name__ == '__main__':
             # copy-pasted PKGBUILDer code down here and used it for the above.
             # Note that this uses an info requests, something PKGBUILDer does
             # not do since multiinfo requests were implemented upstream.
-            rpc = AURURL + 'rpc.php?type={0}&arg={1}'
-            r = SESSION.get(rpc.format('info', pkgname))
+            r = SESSION.get(AURURL + 'rpc.php', params={'type': 'info', 'arg': pkgname})
             r.raise_for_status()
             pkgdata = json.loads(r.text)
             try:
