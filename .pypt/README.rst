@@ -15,18 +15,17 @@ USING THE TEMPLATE
 Requirements
 ============
 
-* ``zsh`` installed (``/release`` and ``/.pypt/localegen`` scripts)
-* Python with ``requests`` installed (``/.pypt/{commitlog,aursend}``)
-* `git-flow extensions by nvie <https://github.com/nvie/gitflow>`_ (you need
-  to manually alter the ``/release`` script, and that is much harder than
+* ``zsh`` installed (required by ``/release`` and ``/.pypt/localegen`` scripts)
+* Python with ``requests`` installed (required by ``/.pypt/{commitlog,aursend}``)
+* `git-flow extensions by nvie <https://github.com/nvie/gitflow>`_ (alternatively yo can manually alter the ``/release`` script, and that is much harder than
   installing the extensions)
 * A git repository.  The PyPT is ready to go if you use GitHub.  If you do not
   want GitHub, edit the ``/PKGBUILD{,-2}{,-git}`` files and any other places
   where GitHub is mentioned, including this document which you should edit
   mentally.
 
-Recommended possesions
-======================
+Recommended possessions
+=======================
 
 * Travis CI account (if you do not want Travis CI, remove ``/.travis.yml``)
 * AUR account (if you do not want AUR uploads, remove the
@@ -62,7 +61,7 @@ The template contains the following files to get you started:
   * locale generation (via the ``.pypt/localegen`` script)
   * running ``import $project`` and the testsuite
   * creating and uploading AUR packages
-  * commiting into git, finishing the ``git flow`` release
+  * committing into git, finishing the ``git flow`` release
 
 
 Getting up to speed in 15 easy steps
