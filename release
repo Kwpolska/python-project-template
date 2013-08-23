@@ -47,6 +47,7 @@ function error {
 
 function cleanup {
     rm -rf $PROJECTLC.egg-info **/__pycache__ dist build
+}
 
 function cleanup_cmfn {
     [[ -e $cmfn ]] && rm $cmfn
