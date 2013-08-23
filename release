@@ -107,7 +107,7 @@ cmfn2=/tmp/kwrs-commit-$dates
 
 cleanup
 cleanup_cmfn
-git add --ignore-errors *
+git add -A --ignore-errors .
 
 cat > $cmfn <<EOF
 #~ Kw’s Release Scripts
@@ -223,12 +223,7 @@ fi
 
 cleanup
 
-git add * .*
-if [[ $? != 0 ]]; then
-    git add --ignore-errors * .*
-    error 'git add * failed.  Fix the errors soon.'
-    read dn
-fi
+git add -A --ignore-errors .
 
 git commit -asF $cmfn"commit"
 
