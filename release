@@ -99,7 +99,7 @@ fi
 # I am creating all the dates at the exact same time.
 date=$(date '+%Y-%m-%d')
 datel=$(date '+%Y-%m-%d %H:%M%z')
-datep=$(date '+%Y%m%d')
+#datep=$(date '+%Y%m%d')
 dates=$(date '+%s')
 
 cmfn=$PWD/.git/kwrs-$dates
@@ -150,9 +150,9 @@ sed "s/__version__ = .*/__version__ = '$version'/g" $PROJECTLC/__init__.py -i
 sed "s/:Date: .*/:Date: $date/g" docs/*.rst -i
 
 [[ -e PKGBUILD ]] && sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD -i
-[[ -e PKGBUILD-git ]] && sed "s/pkgver=.*/pkgver=$datep/g" PKGBUILD-git -i
+[[ -e PKGBUILD-git ]] && sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD-git -i
 [[ -e PKGBUILD-2 ]] && sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD-2 -i
-[[ -e PKGBUILD-2-git ]] && sed "s/pkgver=.*/pkgver=$datep/g" PKGBUILD-2-git -i
+[[ -e PKGBUILD-2-git ]] && sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD-2-git -i
 
 cp docs/README.rst docs/CHANGELOG.rst docs/CONTRIBUTING.rst .
 cp docs/README.rst README
@@ -199,7 +199,7 @@ if [[ $AURTYPE != "none" ]]; then
             cp ../PKGBUILD ./$AURNAME
             cp ../PKGBUILD-git ./$AURNAME"-git/PKGBUILD"
             tar -czf $AURNAME"-"$version"-1".src.tar.gz $AURNAME
-            tar -czf $AURNAME"-git-"$datep"-1".src.tar.gz $AURNAME"-git"
+            tar -czf $AURNAME"-git-"$version"-1".src.tar.gz $AURNAME"-git"
         ;;
         "python")
             mkdir python{,2}'-'$PROJECTLC{,-git}
@@ -209,8 +209,8 @@ if [[ $AURTYPE != "none" ]]; then
             cp ../PKGBUILD-2-git ./python2-$PROJECTLC"-git/PKGBUILD"
             tar -czf python-$PROJECTLC"-"$version"-1".src.tar.gz python-$PROJECTLC
             tar -czf python2-$PROJECTLC"-"$version"-1".src.tar.gz python-$PROJECTLC
-            tar -czf python-$PROJECTLC"-git-"$datep"-1".src.tar.gz python-$PROJECTLC"-git"
-            tar -czf python2-$PROJECTLC"-git-"$datep"-1".src.tar.gz python-$PROJECTLC"-git"
+            tar -czf python-$PROJECTLC"-git-"$version"-1".src.tar.gz python-$PROJECTLC"-git"
+            tar -czf python2-$PROJECTLC"-git-"$version"-1".src.tar.gz python-$PROJECTLC"-git"
         ;;
         *) warning 'incorrect $AURTYPE value.'
     esac
