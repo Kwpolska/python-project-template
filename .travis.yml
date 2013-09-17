@@ -8,5 +8,6 @@ python:
 
 install:
  - "pip install -r requirements.txt --use-mirrors"
+ - "pip install ."
 
 script: ./setup.py test
