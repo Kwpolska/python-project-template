@@ -11,3 +11,8 @@ install:
  - "pip install ."
 
 script: ./setup.py test
+
+notifications:
+  email:
+    on_success: always
+    on_failure: always
