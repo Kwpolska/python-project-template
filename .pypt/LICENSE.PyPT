@@ -11,7 +11,14 @@ HOWEVER, the following files must remain under the BSD license:
 
 The README file for PyPT MAY NOT be relicensed.
 
-Copyright © 2013, Chris “Kwpolska” Warrck.
+The actual license is: (the name may have been replaced by yours if you did the
+Getting up to speed in 15 easy steps, it was mine originally, and the
+version in .pypt/ should reflect that.)
+
+LICENSE
+-------
+
+Copyright © 2013, Chris “Kwpolska” Warrick.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
