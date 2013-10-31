@@ -8,7 +8,7 @@ Appendix B. License for TEMPLATE
 
 .. index:: LICENSE
 
-Copyright © 2013, Kwpolska.
+Copyright © 2013, Chris “Kwpolska” Warrck.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

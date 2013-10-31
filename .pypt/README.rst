@@ -160,7 +160,7 @@ commercial (a.k.a. proprietary) license, you must contact me first.
 
 **This README file MAY NOT be relicensed.**
 
-Copyright © 2013, Kwpolska.
+Copyright © 2013, Chris “Kwpolska” Warrick.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
