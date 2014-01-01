@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 # TEMPLATE v0.1.0
 # INSERT TAGLINE HERE.
-# Copyright © 2013, Kwpolska.
+# Copyright © 2014, Kwpolska.
 # See /LICENSE for licensing information.
 # This file is originally a part of the Python Project Template.
 
@@ -12,7 +12,7 @@
 
     Adapts Qt resources to Python version.
 
-    :Copyright: © 2013, Kwpolska.
+    :Copyright: © 2014, Kwpolska.
     :License: BSD (see /LICENSE).
 """
 import sys

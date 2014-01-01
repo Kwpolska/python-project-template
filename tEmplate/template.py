@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 # TEMPLATE v0.1.0
 # INSERT TAGLINE HERE.
-# Copyright © 2013, Kwpolska.
+# Copyright © 2014, Chris “Kwpolska” Warrick.
 # See /LICENSE for licensing information.
 
 """
@@ -11,6 +11,6 @@
 
     INSERT MODULE DESCRIPTION HERE.
 
-    :Copyright: © 2013, Kwpolska.
+    :Copyright: © 2014, Chris “Kwpolska” Warrick.
     :License: BSD (see /LICENSE).
 """

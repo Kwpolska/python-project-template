@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 # TEMPLATE v0.1.0
 # INSERT TAGLINE HERE.
-# Copyright © 2013, Kwpolska.
+# Copyright © 2014, Chris “Kwpolska” Warrick.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -39,13 +39,13 @@
 
     INSERT TAGLINE HERE.
 
-    :Copyright: © 2013, Kwpolska.
+    :Copyright: © 2014, Chris “Kwpolska” Warrick.
     :License: BSD (see /LICENSE).
 """
 
 __title__ = 'TEMPLATE'
 __version__ = '0.1.0'
-__author__ = 'Kwpolska'
+__author__ = 'Chris “Kwpolska” Warrick'
 __license__ = '3-clause BSD'
 __docformat__ = 'restructuredtext en'
 

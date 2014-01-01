@@ -1,10 +1,11 @@
 ==============================
 Appendix A. Contribution rules
 ==============================
+:Info: Those are the contribution rules for TEMPLATE.
 :Author: Chris “Kwpolska” Warrick <kwpolska@kwpolska.tk>
-:Copyright: © 2013, Kwpolska.
+:Copyright: © 2014, Chris “Kwpolska” Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2013-01-20
+:Date: 2014-01-01
 :Version: 0.1.0
 
 .. index:: contributing

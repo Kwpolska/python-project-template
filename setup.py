@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- encoding: utf-8 -*-
 
 try:
     from setuptools import setup
@@ -9,7 +10,7 @@ setup(name='tEmplate',
       version='0.1.0',
       description='INSERT TAGLINE HERE.',
       keywords='tEmplate',
-      author='Kwpolska',
+      author='Chris “Kwpolska” Warrick',
       author_email='kwpolska@kwpolska.tk',
       url='https://github.com/Kwpolska/tEmplate',
       license='3-clause BSD',

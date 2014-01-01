@@ -1,7 +1,7 @@
 #!/bin/zsh
 # Kw’s Release Tools/Python Project Template
 # Locale Generator
-# Copyright © 2013, Kwpolska.
+# Copyright © 2013-2014, Chris “Kwpolska” Warrick.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -45,18 +45,18 @@ case "$LOCALETYPE" in
         sed '1,+17d' ./messages.pot > ./messages.pot.tmp
 
         pot='# '$PROJECT' pot file.
-        # Copyright © 2011-2013, Kwpolska.
+        # Copyright © 2011-2014, Chris “Kwpolska” Warrick.
         # This file is distributed under the same license as the '$PROJECT' package.
-        # Kwpolska <kwpolska@kwpolska.tk>, 2011-2013.
+        # Chris “Kwpolska” Warrick <kwpolska@kwpolska.tk>, 2011-2014.
         #
         msgid ""
         msgstr ""
         "Project-Id-Version: #version\\n"
-        "Report-Msgid-Bugs-To: Kwpolska <kwpolska@kwpolska.tk>\\n"
+        "Report-Msgid-Bugs-To: Chris “Kwpolska” Warrick <kwpolska@kwpolska.tk>\\n"
         "POT-Creation-Date: #datel\\n"
         "PO-Revision-Date: #datel\\n"
-        "Last-Translator: Kwpolska <kwpolska@kwpolska.tk>\\n"
-        "Language-Team: Kwpolska <kwpolska@kwpolska.tk>\\n"
+        "Last-Translator: Chris “Kwpolska” Warrick <kwpolska@kwpolska.tk>\\n"
+        "Language-Team: Chris “Kwpolska” Warrick <kwpolska@kwpolska.tk>\\n"
         "Language: en\\n"
         "MIME-Version: 1.0\\n"
         "Content-Type: text/plain; charset=UTF-8\\n"

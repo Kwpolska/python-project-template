@@ -1,7 +1,7 @@
-# Maintainer: Kwpolska <kwpolska@kwpolska.tk>
+# Maintainer: Chris “Kwpolska” Warrick <kwpolska@kwpolska.tk>
 pkgname=python-tEmplate-git
 _pyname=tEmplate
-pkgver=20130109
+pkgver=20140101
 pkgrel=1
 pkgdesc='INSERT TAGLINE HERE.  (git version)'
 arch=('any')

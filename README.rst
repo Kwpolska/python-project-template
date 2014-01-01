@@ -3,7 +3,9 @@ Python Project Template.  INSERT TAGLINE HERE.™
 ===============================================
 :Info: This is the README file for the Python Project Template.
 :Author: Chris “Kwpolska” Warrick <kwpolska@kwpolska.tk>
-:Date: 2013-01-20
+:Copyright: © 2014, Chris “Kwpolska” Warrick.
+:License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
+:Date: 2014-01-01
 :Version: 0.1.0
 
 .. index: README
@@ -160,7 +162,7 @@ commercial (a.k.a. proprietary) license, you must contact me first.
 
 **This README file MAY NOT be relicensed.**
 
-Copyright © 2013, Chris “Kwpolska” Warrick.
+Copyright © 2013-2014, Chris “Kwpolska” Warrick.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
