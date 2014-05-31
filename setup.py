@@ -1,10 +1,22 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
+import sys
+import codecs
+from setuptools import setup
+from setuptools.command.test import test as TestCommand
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+
+class PyTest(TestCommand):
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = []
+        self.test_suite = True
+
+    def run_tests(self):
+        # import here, cause outside the eggs aren't loaded
+        import pytest
+        errno = pytest.main(self.test_args)
+        sys.exit(errno)
 
 setup(name='tEmplate',
       version='0.1.0',
@@ -14,10 +26,10 @@ setup(name='tEmplate',
       author_email='kwpolska@kwpolska.tk',
       url='https://github.com/Kwpolska/tEmplate',
       license='3-clause BSD',
-      long_description=open('./docs/README.rst').read(),
+      long_description=codecs.open('./docs/README.rst', 'r', 'utf-8').read(),
       platforms='any',
       zip_safe=False,
-      test_suite='tests',
+      cmdclass={'test': PyTest},
       # http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=['Development Status :: 1 - Planning',
                    'Programming Language :: Python',
@@ -25,7 +37,12 @@ setup(name='tEmplate',
                    'Programming Language :: Python :: 2.7',
                    'Programming Language :: Python :: 3',
                    'Programming Language :: Python :: 3.3'],
-      packages=['tEmplate'])
+      packages=['tEmplate'],
       #requires=['stuff'],
-      #scripts=['bin/tEmplate'],
       #data_files=[('file', ['dest']),],
+      #entry_points={
+          #'console_scripts': [
+              #'template = tEmplate.__main__:main',
+          #]
+      #},
+      )
