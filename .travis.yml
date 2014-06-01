@@ -10,7 +10,8 @@ install:
  - "pip install -r requirements.txt --use-mirrors"
  - "pip install ."
 
-script: ./setup.py test
+script:
+  - "if [[ $NMODE == 'nikola' ]]; then py.test --cov tEmplate --cov-report term-missing tests.py; fi"
 
 notifications:
   email:
