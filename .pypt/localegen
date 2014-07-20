@@ -47,16 +47,16 @@ case "$LOCALETYPE" in
         pot='# '$PROJECT' pot file.
         # Copyright © 2011-2014, Chris “Kwpolska” Warrick.
         # This file is distributed under the same license as the '$PROJECT' package.
-        # Chris “Kwpolska” Warrick <kwpolska@kwpolska.tk>, 2011-2014.
+        # Chris “Kwpolska” Warrick <chris@chriswarrick.com>, 2011-2014.
         #
         msgid ""
         msgstr ""
         "Project-Id-Version: #version\\n"
-        "Report-Msgid-Bugs-To: Chris “Kwpolska” Warrick <kwpolska@kwpolska.tk>\\n"
+        "Report-Msgid-Bugs-To: Chris “Kwpolska” Warrick <chris@chriswarrick.com>\\n"
         "POT-Creation-Date: #datel\\n"
         "PO-Revision-Date: #datel\\n"
-        "Last-Translator: Chris “Kwpolska” Warrick <kwpolska@kwpolska.tk>\\n"
-        "Language-Team: Chris “Kwpolska” Warrick <kwpolska@kwpolska.tk>\\n"
+        "Last-Translator: Chris “Kwpolska” Warrick <chris@chriswarrick.com>\\n"
+        "Language-Team: Chris “Kwpolska” Warrick <chris@chriswarrick.com>\\n"
         "Language: en\\n"
         "MIME-Version: 1.0\\n"
         "Content-Type: text/plain; charset=UTF-8\\n"
