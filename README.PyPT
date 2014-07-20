@@ -87,7 +87,7 @@ Getting up to speed in 15 easy steps
       letters if you feel like it, but it is discouraged and was not tested.
    3. ``python-project-template`` with the GitHub repo name
    4. ``INSERT TAGLINE HERE.`` with a tagline of your choice
-   5. ``kwpolska@.*`` with your e-mail address
+   5. ``chris@chriswarrick.com`` with your e-mail address
    6. ``Kwpolska`` and/or ``Chris “Kwpolska” Warrick`` with your name (affects mostly copyright notices)
 
    Not excluding dotfiles results in changing BSD-licensed files of the PyPT,
