@@ -200,7 +200,7 @@ if [[ $AURTYPE != "none" ]]; then
             cp ../PKGBUILD-git ./$AURNAME"-git/PKGBUILD"
             for d in $AURNAME $AURNAME"-git"; do
                 cd $d
-                mkaurball
+                makepkg --source
                 mv *.src.tar.gz ..
                 cd ..
             done
@@ -213,7 +213,7 @@ if [[ $AURTYPE != "none" ]]; then
             cp ../PKGBUILD-2-git ./python2-$PROJECTLC"-git/PKGBUILD"
             for d in python-$PROJECTLC python-$PROJECTLC"-git" python2-$PROJECTLC python2-$PROJECTLC"-git"; do
                 cd $d
-                mkaurball
+                makepkg --source
                 mv *.src.tar.gz ..
                 cd ..
             done
