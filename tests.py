@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 # TEMPLATE test suite
-# Copyright © 2014, Chris “Kwpolska” Warrick.
+# Copyright © 2014, Chris Warrick.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without

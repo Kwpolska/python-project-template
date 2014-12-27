@@ -1,4 +1,4 @@
-# Maintainer: Chris “Kwpolska” Warrick <chris@chriswarrick.com>
+# Maintainer: Chris Warrick <chris@chriswarrick.com>
 pkgname=python2-tEmplate
 _pyname=tEmplate
 pkgver=0.1.0

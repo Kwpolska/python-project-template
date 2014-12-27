@@ -2,15 +2,15 @@
 Appendix B. License for TEMPLATE
 ================================
 :Info: This is the license for TEMPLATE.
-:Author: Chris “Kwpolska” Warrick <chris@chriswarrick.com>
-:Copyright: © 2014, Chris “Kwpolska” Warrick.
+:Author: Chris Warrick <chris@chriswarrick.com>
+:Copyright: © 2014, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
 :Date: 2014-01-01
 :Version: 0.1.0
 
 .. index:: LICENSE
 
-Copyright © 2014, Chris “Kwpolska” Warrick.
+Copyright © 2014, Chris Warrick.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
