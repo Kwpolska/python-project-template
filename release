@@ -220,7 +220,7 @@ if [[ $AURTYPE != "none" ]]; then
         ;;
         *) warning 'incorrect $AURTYPE value.'
     esac
-    ./.pypt/aursend *.src.tar.gz
+    ../.pypt/aursend *.src.tar.gz
     cd ..
     rm -rf MKPKGBUILD
 fi
