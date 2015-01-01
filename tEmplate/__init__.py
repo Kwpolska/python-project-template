@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 # TEMPLATE v0.1.0
 # INSERT TAGLINE HERE.
-# Copyright © 2014, Chris Warrick.
+# Copyright © 2015, Chris Warrick.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -39,7 +39,7 @@
 
     INSERT TAGLINE HERE.
 
-    :Copyright: © 2014, Chris Warrick.
+    :Copyright: © 2015, Chris Warrick.
     :License: BSD (see /LICENSE).
 """
 

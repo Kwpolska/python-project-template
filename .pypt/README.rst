@@ -3,10 +3,10 @@ Python Project Template.  INSERT TAGLINE HERE.™
 ===============================================
 :Info: This is the README file for the Python Project Template.
 :Author: Chris Warrick <chris@chriswarrick.com>
-:Copyright: © 2014, Chris Warrick.
+:Copyright: © 2013-2015, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2014-01-01
-:Version: 0.1.0
+:Date: 2015-01-01
+:Version: 1.0.5
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/python-project-template.png?branch=master
@@ -90,8 +90,9 @@ Getting up to speed in 15 easy steps
    5. ``chris@chriswarrick.com`` with your e-mail address
    6. ``Kwpolska`` and/or ``Chris Warrick`` with your name (affects mostly copyright notices)
 
-   Not excluding dotfiles results in changing BSD-licensed files of the PyPT,
-   doing so is not allowed.
+   WARNING: some files are in the copyright of Chris Warrick and must stay this
+   way!  They are listed in the license, please keep my name there, otherwise
+   you risk breaking the law.
 
    Also, if ``len(computer_friendly_name) != len('tEmplate')``, you may want to
    change the amount of tildes in docstrings of Python files.
@@ -136,13 +137,10 @@ Getting up to speed in 15 easy steps
         git flow init #(change version tag prefix to `v`)
         git add *
         git checkout develop
-        git commit -sm 'initial commit via Kwpolska’s Python Project Template'
+        git commit -sm 'initial commit via @Kwpolska’s Python Project Template'
         git checkout master
         git merge --ff-only develop
         git push -u origin master develop
-
-Note that the above is likely to be replaced with an automated script at some
-point.
 
 COPYRIGHT
 ---------
@@ -158,11 +156,13 @@ commercial (a.k.a. proprietary) license, you must contact me first.
 * /.pypt/localegen
 * /.pypt/README.PyPT
 * /.pypt/LICENSE.PyPT
+* /docs/CONTRIBUTING.rst
+* /CONTRIBUTING.rst
 * /release
 
 **This README file MAY NOT be relicensed.**
 
-Copyright © 2013-2014, Chris Warrick.
+Copyright © 2013-2015, Chris Warrick.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

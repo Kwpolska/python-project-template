@@ -4,10 +4,15 @@ commercial (a.k.a. proprietary) license, you must contact me first.
 
 HOWEVER, the following files must remain under the BSD license:
 
- * /.pypt/aursend
- * /.pypt/commitlog
- * /.pypt/localegen
- * /release
+* /.pypt/aursend
+* /.pypt/commitlog
+* /.pypt/localegen
+* /.pypt/README.PyPT
+* /.pypt/LICENSE.PyPT
+* /docs/CONTRIBUTING.rst
+* /CONTRIBUTING.rst
+* /release
+
 
 The README file for PyPT MAY NOT be relicensed.
 
@@ -18,7 +23,7 @@ version in .pypt/ should reflect that.)
 LICENSE
 -------
 
-Copyright © 2014, Chris Warrick.
+Copyright © 2013-2015, Chris Warrick.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
