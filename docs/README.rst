@@ -5,8 +5,8 @@ Python Project Template.  INSERT TAGLINE HERE.™
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2015, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2015-01-01
-:Version: 1.0.5
+:Date: 2015-01-03
+:Version: 1.0.6
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/python-project-template.png?branch=master
@@ -18,7 +18,7 @@ Requirements
 ============
 
 * ``zsh`` installed (required by ``/release`` and ``/.pypt/localegen`` scripts)
-* Python with ``requests`` installed (required by ``/.pypt/{commitlog,aursend}``)
+* Python with ``requests`` (required by ``/.pypt/{commitlog,aursend}``) and ``twine`` (required by ``/release``) installed
 * `git-flow extensions by nvie <https://github.com/nvie/gitflow>`_ (alternatively yo can manually alter the ``/release`` script, and that is much harder than
   installing the extensions)
 * A git repository.  The PyPT is ready to go if you use GitHub.  If you do not

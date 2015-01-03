@@ -181,7 +181,8 @@ status 'Running pre-sdist.hook...'
 status 'This is the last chance to quit.  Hit ^C now if you want to.'
 read bailout
 
-./setup.py sdist upload
+./setup.py sdist
+twine upload -s dist/$PROJECTLC-$version.tar.gz
 
 status 'Creating AUR packages...'
 [[ -e PKGBUILD ]] && md5out=$(md5sum 'dist/'$PROJECTLC'-'$version'.tar.gz'|awk '{print $1}')
