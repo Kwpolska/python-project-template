@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 import sys
-import codecs
+import io
 from setuptools import setup
 from setuptools.command.test import test as TestCommand
 
@@ -25,8 +25,8 @@ setup(name='tEmplate',
       author='Chris Warrick',
       author_email='chris@chriswarrick.com',
       url='https://github.com/Kwpolska/tEmplate',
-      license='3-clause BSD',
-      long_description=codecs.open('./docs/README.rst', 'r', 'utf-8').read(),
+      license='MIT',
+      long_description=io.open('./docs/README.rst', 'r', encoding='utf-8').read(),
       platforms='any',
       zip_safe=False,
       cmdclass={'test': PyTest},
