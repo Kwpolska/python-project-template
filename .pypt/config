@@ -17,13 +17,3 @@ LOCALETYPE="none"
 # Python versions supported.
 PYTHON2=1
 PYTHON3=1
-
-# AUR packages creation mode.  One of:
-# none      Do not create nor upload AUR packages.
-# python    Create python{,2}-$PROJECTLC{,-git} packages (4 in total)
-# app       Create $AURNAME{,-git} packages with Python 3
-AURTYPE="python"
-
-# AUR package name.  Defaults to $PROJECTLC.  Ignored by `python`.
-# WARNING: you still need to edit the PKGBUILDs.
-AURNAME=$PROJECTLC

@@ -184,47 +184,9 @@ read bailout
 ./setup.py sdist
 twine upload -s dist/$PROJECTLC-$version.tar.gz
 
-status 'Creating AUR packages...'
+status 'Updating AUR PKGBUILDs...'
 [[ -e PKGBUILD ]] && md5out=$(md5sum 'dist/'$PROJECTLC'-'$version'.tar.gz'|awk '{print $1}')
-sed "s/md5sums=.*/md5sums=('$md5out')/" PKGBUILD -i
-[[ -e PKGBUILD-2 ]] && sed "s/md5sums=.*/md5sums=('$md5out')/" PKGBUILD-2 -i
-
-if [[ $AURTYPE != "none" ]]; then
-    rm -rf MKPKGBUILD
-    mkdir MKPKGBUILD
-    cd MKPKGBUILD
-
-    case "$AURTYPE" in
-        "app")
-            mkdir $AURNAME{,-git}
-            cp ../PKGBUILD ./$AURNAME
-            cp ../PKGBUILD-git ./$AURNAME"-git/PKGBUILD"
-            for d in $AURNAME $AURNAME"-git"; do
-                cd $d
-                makepkg --source
-                mv *.src.tar.gz ..
-                cd ..
-            done
-        ;;
-        "python")
-            mkdir python{,2}'-'$PROJECTLC{,-git}
-            cp ../PKGBUILD ./python-$PROJECTLC
-            cp ../PKGBUILD-git ./python-$PROJECTLC"-git/PKGBUILD"
-            cp ../PKGBUILD-2 ./python2-$PROJECTLC/PKGBUILD
-            cp ../PKGBUILD-2-git ./python2-$PROJECTLC"-git/PKGBUILD"
-            for d in python-$PROJECTLC python-$PROJECTLC"-git" python2-$PROJECTLC python2-$PROJECTLC"-git"; do
-                cd $d
-                makepkg --source
-                mv *.src.tar.gz ..
-                cd ..
-            done
-        ;;
-        *) warning 'incorrect $AURTYPE value.'
-    esac
-    ../.pypt/aursend *.src.tar.gz
-    cd ..
-    rm -rf MKPKGBUILD
-fi
+[[ -e PKGBUILD ]] && sed "s/md5sums=.*/md5sums=('$md5out')/" PKGBUILD -i
 
 cleanup
 

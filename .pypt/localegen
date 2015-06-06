@@ -40,7 +40,7 @@ case "$LOCALETYPE" in
         datel=$(date '+%Y-%m-%d %H:%M%z')
         datep=$(date '+%Y%m%d')
 
-        xgettext -c ./$PROJECTLC/*.py INSTALL.py localeprovider.py -o ./messages.pot
+        xgettext -c ./$PROJECTLC/**/*.py localeprovider.py -o ./messages.pot
 
         sed '1,+17d' ./messages.pot > ./messages.pot.tmp
 
