@@ -143,6 +143,7 @@ fi
 
 status 'Replacing versions and dates in files...'
 sed "s/version=.*/version='$version',/g" setup.py -i
+sed "s/version = .*/version = '$version'/g" docs/conf.py -i
 sed "s/release = .*/release = '$version'/g" docs/conf.py -i
 sed "s/:Version: .*/:Version: $version/g" docs/**/*.rst -i
 sed "s/# $PROJECT v.*/# $PROJECT v$version/" $PROJECTLC/**/*.py -i
