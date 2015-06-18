@@ -34,7 +34,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # Arguments:
-# FILE BASEDIR OLDVERSION
+# FILE BASEDIR NEWVERSION
 
 import re
 from os.path import join as pjoin
