@@ -5,6 +5,8 @@ import io
 from setuptools import setup
 from setuptools.command.test import test as TestCommand
 
+with open('requirements.txt', 'r') as fh:
+    dependencies = [l.strip() for l in fh]
 
 class PyTest(TestCommand):
     def finalize_options(self):
@@ -39,6 +41,7 @@ setup(name='tEmplate',
                    'Programming Language :: Python :: 3.3',
                    'Programming Language :: Python :: 3.4'],
       packages=['tEmplate'],
+      install_requires=dependencies,
       #requires=['stuff'],
       #data_files=[('file', ['dest']),],
       #entry_points={

@@ -4,6 +4,8 @@ PROJECT="TEMPLATE"
 # Computer-friendly project name, [a-z0-9_\-]
 PROJECTLC="tEmplate"
 
+# GitHub username.
+GITUSER="Kwpolska"
 # Git repository name.  Using $PROJECTLC is recommended.
 GITREPO=$PROJECTLC
 
