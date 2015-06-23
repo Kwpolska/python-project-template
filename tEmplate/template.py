@@ -6,11 +6,10 @@
 # See /LICENSE for licensing information.
 
 """
-    tEmplate.tEmplate
-    ~~~~~~~~~~~~~~~~~
+INSERT MODULE DESCRIPTION HERE.
 
-    INSERT MODULE DESCRIPTION HERE.
-
-    :Copyright: © 2015, Chris Warrick.
-    :License: BSD (see /LICENSE).
+:Copyright: © 2015, Chris Warrick.
+:License: BSD (see /LICENSE).
 """
+
+__all__ = ()

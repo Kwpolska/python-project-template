@@ -34,13 +34,10 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """
-    tEmplate
-    ~~~~~~~~
+INSERT TAGLINE HERE.
 
-    INSERT TAGLINE HERE.
-
-    :Copyright: © 2015, Chris Warrick.
-    :License: BSD (see /LICENSE).
+:Copyright: © 2015, Chris Warrick.
+:License: BSD (see /LICENSE).
 """
 
 __title__ = 'TEMPLATE'
@@ -49,11 +46,15 @@ __author__ = 'Chris Warrick'
 __license__ = '3-clause BSD'
 __docformat__ = 'restructuredtext en'
 
+__all__ = ('TEMPLATEError',)
+
 # import gettext
 # G = gettext.translation('tEmplate', '/usr/share/locale', fallback='C')
 # _ = G.gettext
 
 
 class TEMPLATEError(Exception):
+
     """Exceptions raised by TEMPLATE."""
+
     pass

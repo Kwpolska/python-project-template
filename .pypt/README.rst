@@ -5,8 +5,8 @@ Python Project Template.  INSERT TAGLINE HERE.™
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2015, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2015-06-18
-:Version: 1.0.8
+:Date: 2015-06-23
+:Version: 1.0.9
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/python-project-template.png?branch=master

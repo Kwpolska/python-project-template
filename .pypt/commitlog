@@ -36,6 +36,17 @@
 # Arguments:
 # FILE BASEDIR NEWVERSION
 
+"""
+Parse commits and changelogs for PyPT.
+
+Usage: .pypt/commitlog FILE BASEDIR NEWVERSION, where
+    FILE is the path to the CMFN file to parse,
+    BASEDIR is the project directory,
+    NEWVERSION is the new version number.
+    All paths should be absolute.
+"""
+
+
 import re
 from os.path import join as pjoin
 from sys import argv
@@ -53,7 +64,7 @@ for i in e:
     else:
         i[0] = 'C' + i[0]  # regexp hack
         if i[0] == 'COMMIT':
-            with open(argv[1] + 'commit', 'w') as fh:
+            with open(argv[1] + '-commit', 'w') as fh:
                 fh.write(i[1])
         elif i[0] == 'CHANGELOG':
             with open(pjoin(argv[2], 'docs', 'CHANGELOG.rst')) as fh:

@@ -193,7 +193,7 @@ cleanup
 
 git add -A --ignore-errors .
 
-git commit -asF $cmfn"commit"
+git commit -asF $cmfn"-commit"
 
 cleanup_cmfn
 
