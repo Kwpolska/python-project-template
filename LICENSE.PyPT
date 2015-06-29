@@ -4,10 +4,11 @@ commercial (a.k.a. proprietary) license, you must contact me first.
 
 HOWEVER, the following files must remain under the BSD license:
 
-* /.pypt/aursend
 * /.pypt/commitlog
+* /.pypt/ghrel
 * /.pypt/localegen
-* /.pypt/README.PyPT
+* /.pypt/PYPT-UPDATE
+* /.pypt/README.rst
 * /.pypt/LICENSE.PyPT
 * /docs/CONTRIBUTING.rst
 * /CONTRIBUTING.rst
@@ -17,7 +18,7 @@ HOWEVER, the following files must remain under the BSD license:
 The README file for PyPT MAY NOT be relicensed.
 
 The actual license is: (the name may have been replaced by yours if you did the
-Getting up to speed in 15 easy steps, it was mine originally, and the
+Getting up to speed in 16 easy steps, it was mine originally, and the
 version in .pypt/ should reflect that.)
 
 LICENSE

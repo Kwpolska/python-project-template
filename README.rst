@@ -6,7 +6,7 @@ Python Project Template.  INSERT TAGLINE HERE.™
 :Copyright: © 2013-2015, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
 :Date: 2015-06-29
-:Version: 1.1.1
+:Version: 1.1.2
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/python-project-template.png?branch=master
@@ -49,6 +49,7 @@ The template contains the following files to get you started:
 * ``__init__.py`` and ``template.py`` files in the Python package directory
 * A good-enough ``setup.py`` file
 * ``tests.py`` containing some *Is My Python Sane?*-style tests
+* An automated global update script (``.pypt/PYPT-UPDATE``)
 * Entry points configuration ready to be uncommented
 * Addons for Qt users
 * PKGBUILDs for the Arch Linux User Repository (AUR)
@@ -63,7 +64,7 @@ The template contains the following files to get you started:
   * committing into git, finishing the ``git flow`` release
   * creating a GitHub Releases entry
 
-Getting up to speed in 15 easy steps
+Getting up to speed in 16 easy steps
 ====================================
 
 1. Create the repository for the project on GitHub and enable it on Travis CI.
@@ -99,8 +100,8 @@ Getting up to speed in 15 easy steps
    1. ``/docs/README.rst`` to ``/README.rst`` and ``/README``
    2. ``/docs/CHANGELOG.rst`` to ``/CHANGELOG.rst``
 
-7. Modify ``/.pypt/config``
-8. Generate a `GitHub Personal Access Token <https://github.com/settings/tokens>`_ and write it to a ``/.pypt/gh-token`` file
+7. Modify ``/.pypt/config``.
+8. Generate a `GitHub Personal Access Token <https://github.com/settings/tokens>`_ and write it to a ``/.pypt/gh-token`` file.
 9. Customize ``/setup.py`` to your liking.  You should pay attention to the
    classifiers and the commented parts.
 10. Customize ``requirements.txt``.
@@ -123,8 +124,11 @@ Getting up to speed in 15 easy steps
     PS. GNU GPL is not a good idea.  You can use it, but the world would be
     much happier if you did not.
 
-15. Remove ``/.git``, and run the following commands::
+15. If you have a ``PYPT-UPDATE`` script, add your new project to the list
+    there.  If not, you may want to copy it from ``.pypt`` and set it up.
+16. Run the following commands::
 
+        rm -rf .git .pypt/PYPT-UPDATE
         source .pypt/config
         git init
         git remote add origin git@github.com:$GITUSER/$GITREPO
@@ -148,7 +152,8 @@ commercial (a.k.a. proprietary) license, you must contact me first.
 * /.pypt/commitlog
 * /.pypt/ghrel
 * /.pypt/localegen
-* /.pypt/README.PyPT
+* /.pypt/PYPT-UPDATE
+* /.pypt/README.rst
 * /.pypt/LICENSE.PyPT
 * /docs/CONTRIBUTING.rst
 * /CONTRIBUTING.rst
