@@ -46,7 +46,7 @@ setup(name='tEmplate',
       #data_files=[('file', ['dest']),],
       #entry_points={
           #'console_scripts': [
-              #'template = tEmplate.__main__:main',
+              #'tEmplate = tEmplate.__main__:main',
           #]
       #},
       )
