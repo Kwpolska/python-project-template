@@ -34,7 +34,7 @@
 . .pypt/config
 
 case "$LOCALETYPE" in
-    'gettext')
+    'gettext' | 'gettext-tx')
         version=$(cat setup.py | grep 'version=' | sed -e 's/.*version=.//g' -e 's/.,$//g')
         date=$(date '+%Y-%m-%d')
         datel=$(date '+%Y-%m-%d %H:%M%z')
@@ -69,6 +69,11 @@ case "$LOCALETYPE" in
         sed "s/#version/$version/g" messages.pot -i
         sed "s/#datel/$datel/g" messages.pot -i
 
+        if [[ "$LOCALETYPE" == "gettext-tx" ]]; then
+            tx push -s
+            tx pull
+        fi
+
         for i in ./locale/*; do
             language=$(basename $i)
 
@@ -89,8 +94,12 @@ case "$LOCALETYPE" in
             msgfmt -o $podir/$PROJECTLC.mo $popath
         done
     ;;
-    'pyqt4')
+    'pyqt4' | 'pyqt4-tx')
         pylupdate4 -verbose $PROJECTLC.pro
+        if [[ "$LOCALETYPE" == "pyqt4-tx" ]]; then
+            tx push -s
+            tx pull
+        fi
         for i in ./locale/*.ts; do
             # pylupdate4 is dumb and mangles encodings
             sed -i -e 's|filename="|filename="../|g' -e \
@@ -103,8 +112,12 @@ case "$LOCALETYPE" in
             pyrcc4 -py2 $PROJECTLC.qrc -o $PROJECTLC/ui/resources2.py
             pyrcc4 -py3 $PROJECTLC.qrc -o $PROJECTLC/ui/resources3.py
     ;;
-    'pyside')
+    'pyside' | 'pyside-tx')
         pyside-lupdate -verbose $PROJECTLC.pro
+        if [[ "$LOCALETYPE" == "pyside-tx" ]]; then
+            tx push -s
+            tx pull
+        fi
         for i in ./locale/*.ts; do
             # pyside may be dumb, too
             sed -i -e 's|filename="|filename="../|g' -e \

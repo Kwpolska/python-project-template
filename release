@@ -51,7 +51,7 @@ function cleanup {
 
 function cleanup_cmfn {
     [[ -e $cmfn ]] && rm $cmfn
-    [[ -e $cmfn"-commit" ]] && mv $cmfn"-commit" $cmfn2
+    [[ -e $cmfn2 ]] && rm $cmfn2
 }
 
 status '*** Kw’s Release Scripts'
@@ -103,7 +103,7 @@ datel=$(date '+%Y-%m-%d %H:%M%z')
 dates=$(date '+%s')
 
 cmfn=$PWD/.git/kwrs-$dates
-cmfn2=/tmp/kwrs-commit-$dates
+cmfn2=$cmfn"-commit"
 
 cleanup
 cleanup_cmfn
@@ -193,7 +193,7 @@ cleanup
 
 git add -A --ignore-errors .
 
-git commit -asF $cmfn"-commit"
+git commit -asF $cmfn2
 
 git flow release finish $version
 git push

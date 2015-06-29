@@ -10,10 +10,13 @@ GITUSER="Kwpolska"
 GITREPO=$PROJECTLC
 
 # Locale type.  One of:
-# none      Do not generate nor use any locales.
-# gettext   Use GNU gettext (gettext module).
-# pyqt4     Use the Qt locale tools (stock Qt + PyQt4).
-# pyside    Use the Qt locale tools (stock Qt + PySide).
+# none          Do not generate nor use any locales.
+# gettext       Use GNU gettext (gettext module).
+# gettext-tx    Use GNU gettext (gettext module) and send to Transifex.
+# pyqt4         Use the Qt locale tools (stock Qt + PyQt4).
+# pyqt4-tx      Use the Qt locale tools (stock Qt + PyQt4) and send to Transifex.
+# pyside        Use the Qt locale tools (stock Qt + PySide).
+# pyside-tx     Use the Qt locale tools (stock Qt + PySide) and send to Transifex.
 LOCALETYPE="none"
 
 # Python versions supported.
