@@ -15,5 +15,5 @@ script:
 
 notifications:
   email:
-    on_success: always
+    on_success: always # use "change" to get less emails
     on_failure: always
