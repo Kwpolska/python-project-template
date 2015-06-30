@@ -5,8 +5,8 @@ Python Project Template.  INSERT TAGLINE HERE.™
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2015, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2015-06-23
-:Version: 1.0.9
+:Date: 2015-06-30
+:Version: 1.2.0
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/python-project-template.png?branch=master
@@ -18,7 +18,7 @@ Requirements
 ============
 
 * ``zsh`` installed (required by ``/release`` and ``/.pypt/localegen`` scripts)
-* Python with ``requests`` (required by ``/.pypt/{commitlog,aursend}``) and ``twine`` (required by ``/release``) installed
+* Python with ``requests`` (required by ``/.pypt/{commitlog,ghrel}``) and ``twine`` (required by ``/release``) installed
 * `git-flow extensions by nvie <https://github.com/nvie/gitflow>`_ (alternatively yo can manually alter the ``/release`` script, and that is much harder than
   installing the extensions)
 * A git repository.  The PyPT is ready to go if you use GitHub.  If you do not
@@ -30,8 +30,6 @@ Recommended possessions
 =======================
 
 * Travis CI account (if you do not want Travis CI, remove ``/.travis.yml``)
-* AUR account (if you do not want AUR uploads, remove the
-  ``/PKGBUILD{,-2}{,-git}`` files and modify the ``/.pypt/config`` file)
 
 Contents
 ========
@@ -50,8 +48,9 @@ The template contains the following files to get you started:
   script
 * ``__init__.py`` and ``template.py`` files in the Python package directory
 * A good-enough ``setup.py`` file
-* ``tests.py`` containing some *Is My Python Sane?*-style tests
-* A sample ``/usr/bin/`` script
+* ``tests/`` containing some *Is My Python Sane?*-style tests (using ``py.test``)
+* An automated global update script (``.pypt/PYPT-UPDATE``)
+* Entry points configuration ready to be uncommented
 * Addons for Qt users
 * PKGBUILDs for the Arch Linux User Repository (AUR)
 * A state-of-the-art ``release`` script, the operations of which are:
@@ -62,11 +61,10 @@ The template contains the following files to get you started:
   * copying over ``/docs/README.rst``,  ``/docs/CHANGELOG.rst`` and ``/docs/CONTRIBUTING.rst`` to ``/``
   * locale generation (via the ``.pypt/localegen`` script)
   * running ``import $project`` and the testsuite
-  * creating and uploading AUR packages
   * committing into git, finishing the ``git flow`` release
+  * creating a GitHub Releases entry
 
-
-Getting up to speed in 15 easy steps
+Getting up to speed in 16 easy steps
 ====================================
 
 1. Create the repository for the project on GitHub and enable it on Travis CI.
@@ -94,9 +92,6 @@ Getting up to speed in 15 easy steps
    way!  They are listed in the license, please keep my name there, otherwise
    you risk breaking the law.
 
-   Also, if ``len(computer_friendly_name) != len('tEmplate')``, you may want to
-   change the amount of tildes in docstrings of Python files.
-
 4. Rename ``/tEmplate`` to the name used in 4.2.
 5. Modify ``/docs/README.rst`` to reflect your project and not the Template
    (and make a copy if you are reading it locally from those files)
@@ -105,11 +100,11 @@ Getting up to speed in 15 easy steps
    1. ``/docs/README.rst`` to ``/README.rst`` and ``/README``
    2. ``/docs/CHANGELOG.rst`` to ``/CHANGELOG.rst``
 
-7. Modify ``/.pypt/config``
-8. Modify ``/bin/tEmplate`` and rename it OR remove the directory
+7. Modify ``/.pypt/config``.
+8. Generate a `GitHub Personal Access Token <https://github.com/settings/tokens>`_ and write it to a ``/.pypt/gh-token`` file.
 9. Customize ``/setup.py`` to your liking.  You should pay attention to the
    classifiers and the commented parts.
-10. Customize requirements.txt.
+10. Customize ``requirements.txt``.
 11. If you are using PyQt4 or PySide, make sure to put your UI code in a ``ui``
     submodule.  Copy over the ``/QT-ADDONS/resources.py`` file to that
     submodule, even if you are not using resources now.
@@ -129,11 +124,14 @@ Getting up to speed in 15 easy steps
     PS. GNU GPL is not a good idea.  You can use it, but the world would be
     much happier if you did not.
 
-15. Remove ``/.git``, and run the following commands, replacing stuff with ``$``
-    in front::
+15. If you have a ``PYPT-UPDATE`` script, add your new project to the list
+    there.  If not, you may want to copy it from ``.pypt`` and set it up.
+16. Run the following commands::
 
+        rm -rf .git .pypt/PYPT-UPDATE
+        source .pypt/config
         git init
-        git remote add origin git@github.com:$GITUSERNAME/$GITREPO
+        git remote add origin git@github.com:$GITUSER/$GITREPO
         git flow init #(change version tag prefix to `v`)
         git add *
         git checkout develop
@@ -151,10 +149,11 @@ commercial (a.k.a. proprietary) license, you must contact me first.
 
 **However, the following files must remain under the BSD license:**
 
-* /.pypt/aursend
 * /.pypt/commitlog
+* /.pypt/ghrel
 * /.pypt/localegen
-* /.pypt/README.PyPT
+* /.pypt/PYPT-UPDATE
+* /.pypt/README.rst
 * /.pypt/LICENSE.PyPT
 * /docs/CONTRIBUTING.rst
 * /CONTRIBUTING.rst

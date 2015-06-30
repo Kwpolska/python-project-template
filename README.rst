@@ -5,8 +5,8 @@ Python Project Template.  INSERT TAGLINE HERE.™
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2015, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2015-06-29
-:Version: 1.1.2
+:Date: 2015-06-30
+:Version: 1.2.0
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/python-project-template.png?branch=master
@@ -48,7 +48,7 @@ The template contains the following files to get you started:
   script
 * ``__init__.py`` and ``template.py`` files in the Python package directory
 * A good-enough ``setup.py`` file
-* ``tests.py`` containing some *Is My Python Sane?*-style tests
+* ``tests/`` containing some *Is My Python Sane?*-style tests (using ``py.test``)
 * An automated global update script (``.pypt/PYPT-UPDATE``)
 * Entry points configuration ready to be uncommented
 * Addons for Qt users
