@@ -201,7 +201,7 @@ git flow release finish $version
 git push
 git push --tags
 
-.pypt/ghrel $cmfn $PWD $GITUSER/$GTIREPO v$version
+.pypt/ghrel $cmfn $PWD $GITUSER/$GITREPO v$version
 
 cleanup_cmfn
 
