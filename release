@@ -168,11 +168,13 @@ if [[ $? = 1 ]]; then
     exit 1
 fi
 
-status 'Running tests...'
-./setup.py test
-if [[ $? = 1 ]]; then
-    error "Tests failed.  Fix your code or don't come back."
-    exit 1
+if [[ -e tests ]]; then
+    status 'Running tests...'
+    py.test tests/
+    if [[ $? = 1 ]]; then
+        error "Tests failed.  Fix your code or don't come back."
+        exit 1
+    fi
 fi
 
 status 'Running pre-sdist.hook...'
@@ -182,8 +184,8 @@ status 'Running pre-sdist.hook...'
 status 'This is the last chance to quit.  Hit ^C now if you want to.'
 read bailout
 
-./setup.py sdist
-twine upload -s dist/$PROJECTLC-$version.tar.gz
+./setup.py sdist bdist_wheel
+twine upload -s dist/$PROJECTLC-$version.tar.gz dist/$PROJECTLC-$version*.whl
 
 status 'Updating AUR PKGBUILDs...'
 [[ -e PKGBUILD ]] && md5out=$(md5sum 'dist/'$PROJECTLC'-'$version'.tar.gz'|awk '{print $1}')
