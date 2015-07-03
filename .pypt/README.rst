@@ -61,6 +61,7 @@ The template contains the following files to get you started:
   * copying over ``/docs/README.rst``,  ``/docs/CHANGELOG.rst`` and ``/docs/CONTRIBUTING.rst`` to ``/``
   * locale generation (via the ``.pypt/localegen`` script)
   * running ``import $project`` and the testsuite
+  * uploading a source distribution and a wheel to PyPI
   * committing into git, finishing the ``git flow`` release
   * creating a GitHub Releases entry
 
