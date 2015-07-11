@@ -1,6 +1,6 @@
 #!/usr/bin/zsh
-PYPT_ROOT=$HOME/git/python-project-template
-PYPT_COMPONENTS=(release .pypt/README.rst .pypt/LICENSE.PyPT .pypt/commitlog .pypt/localegen .pypt/ghrel)
+PYPT_ROOT=$HOME/git/python-project-template/{{cookiecutter.repo_name}}
+PYPT_COMPONENTS=(release .pypt/commitlog .pypt/localegen .pypt/ghrel)
 PYPT_PROJECTS=("$HOME/git/pkgbuilder" "$HOME/git/coil" "$HOME/git/timerge" "$HOME/git/upass")
 
 for p in $PYPT_PROJECTS; do
