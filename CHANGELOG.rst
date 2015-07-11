@@ -1,0 +1,101 @@
+==============
+PyPT Changelog
+==============
+:Info: This is the changelog for PyPT.
+:Author: Chris Warrick <chris@chriswarrick.com>
+:Copyright: © 2015, Chris Warrick.
+:License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
+:Date: 2015-07-11
+:Version: 2.0.0
+
+.. index:: CHANGELOG
+
+GitHub holds releases, too
+==========================
+
+More information can be found on GitHub in the `releases section
+<https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}/releases>`_.
+
+Version History
+===============
+
+
+v2.0.0
+    * Automation (using cookiecutter)
+
+v1.3.1
+
+    .. code:: text
+
+               ,---------------.
+              /  /``````|``````\\
+             /  /_______|_______\\________
+            |]      GTI |'       |        |]
+            =  .-:-.    |________|  .-:-.  =
+             `  -+-  --------------  -+-  '
+               '-:-'                '-:-'
+
+v1.3.0
+    * Use ``argparse`` in ``commitlog`` and ``ghrel`` instead of a ``sys.argv`` hack
+    * Vendor ``textwrap.indent`` in ``commitlog`` for Python 2 compatibility
+    * Use ``py.test`` in the ``release`` script
+    * Run tests only if they exist
+    * Create and upload wheels
+
+
+v1.2.1
+    * Use new tests in .travis.yml.
+
+
+v1.2.0
+    * Better tests, stored in a directory and using py.test instead of unittest.
+
+
+v1.1.2
+    * Add ``.pypt/PYPT-UPDATE`` script (copy it somewhere else and customize to your liking)
+
+
+v1.1.1
+    * Fix ``$cmfn`` variables in ``./release``
+    * Print correct release URL (``html_url`` for friendly webpage)
+    * Support Transifex in locale generation (``-tx`` suffix)
+
+
+v1.1.0
+    * Automate GitHub Releases posting. (For CMFN-based files, ``backticks`` are automatically corrected.)
+
+v1.0.9
+    * Fix mismatched paths in the commit and changelog editor (cmfn) — requries update of ``.pypt/commitlog`` and ``release``
+    * PEP 257 compliance
+
+v1.0.8
+    * Update Sphinx ``version`` field (previously, only ``release`` was updated)
+
+v1.0.7
+    * no more AUR uploads due to AURv4
+
+v1.0.6
+    * Use ``twine`` instead of ``setup.py upload``
+    * Fix ``aursend`` path
+
+v1.0.5
+    Updating all dates to say 2015.
+
+v1.0.4
+    * Rebranding: removing nickname from all *Author* lines.
+
+v1.0.3
+    * changed e-mail address
+    * setup.cfg
+    * setuptools entry_points
+    * py.test
+
+v1.0.2
+    * Set the © fields to 2014.
+
+v1.0.1
+    * Some small changes and fixes.
+
+v1.0.0
+    * Initial release.
+
