@@ -1,0 +1,24 @@
+#!/bin/bash
+# Human-friendly project name.
+PROJECT="{{ cookiecutter.project_name }}"
+# Computer-friendly project name, [a-z0-9_\-]
+PROJECTLC="{{ cookiecutter.repo_name }}"
+
+# GitHub username.
+GITUSER="{{ cookiecutter.github_username }}"
+# Git repository name.  Using $PROJECTLC is recommended.
+GITREPO=$PROJECTLC
+
+# Locale type.  One of:
+# none          Do not generate nor use any locales.
+# gettext       Use GNU gettext (gettext module).
+# gettext-tx    Use GNU gettext (gettext module) and send to Transifex.
+# pyqt4         Use the Qt locale tools (stock Qt + PyQt4).
+# pyqt4-tx      Use the Qt locale tools (stock Qt + PyQt4) and send to Transifex.
+# pyside        Use the Qt locale tools (stock Qt + PySide).
+# pyside-tx     Use the Qt locale tools (stock Qt + PySide) and send to Transifex.
+LOCALETYPE="none"
+
+# Python versions supported.
+PYTHON2=1
+PYTHON3=1

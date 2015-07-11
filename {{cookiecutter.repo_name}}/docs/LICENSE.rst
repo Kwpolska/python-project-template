@@ -1,30 +1,16 @@
-Python Project Template is licensed under a BSD-like license.  You are free to
-relicense your code to another open source license.  If you want to apply a
-commercial (a.k.a. proprietary) license, you must contact me first.
+=======================================================
+Appendix B. License for {{ cookiecutter.project_name }}
+=======================================================
+:Info: This is the license for {{ cookiecutter.project_name }}.
+:Author: {{ cookiecutter.full_name }} <{{ cookiecutter.email }}>
+:Copyright: © {{ cookiecutter.year }}, {{ cookiecutter.full_name }}.
+:License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
+:Date: {{ cookiecutter.release_date }}
+:Version: {{ cookiecutter.version }}
 
-HOWEVER, the following files must remain under the BSD license:
+.. index:: LICENSE
 
-* /.pypt/commitlog
-* /.pypt/ghrel
-* /.pypt/localegen
-* /.pypt/PYPT-UPDATE
-* /.pypt/README.rst
-* /.pypt/LICENSE.PyPT
-* /docs/CONTRIBUTING.rst
-* /CONTRIBUTING.rst
-* /release
-
-
-The README file for PyPT MAY NOT be relicensed.
-
-The actual license is: (the name may have been replaced by yours if you did the
-Getting up to speed in 16 easy steps, it was mine originally, and the
-version in .pypt/ should reflect that.)
-
-LICENSE
--------
-
-Copyright © 2013-2015, Chris Warrick.
+Copyright © {{ cookiecutter.year }}, {{ cookiecutter.full_name }}.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

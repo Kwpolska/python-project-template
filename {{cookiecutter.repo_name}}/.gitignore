@@ -36,4 +36,3 @@ o.*
 
 # GitHub token file
 .pypt/gh-token
-{{cookiecutter.repo_name}}/.pypt/gh-token

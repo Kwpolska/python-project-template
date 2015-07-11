@@ -4,8 +4,8 @@ Python Project Template.  INSERT TAGLINE HERE.™
 :Info: This is the README file for the Python Project Template.
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2015, Chris Warrick.
-:Date: 2015-07-03
-:Version: 1.3.1
+:Date: 2015-07-11
+:Version: 2.0.0
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/python-project-template.png?branch=master
@@ -17,7 +17,7 @@ Requirements
 ============
 
 * ``zsh`` installed (required by ``/release`` and ``/.pypt/localegen`` scripts)
-* Python with ``requests`` (required by ``/.pypt/{commitlog,ghrel}``) and ``twine`` (required by ``/release``) installed
+* Python with ``cookiecutter`` (initial generation), ``requests`` (required by ``/.pypt/{commitlog,ghrel}``) and ``twine`` (required by ``/release``) installed
 * `git-flow extensions by nvie <https://github.com/nvie/gitflow>`_ (alternatively yo can manually alter the ``/release`` script, and that is much harder than
   installing the extensions)
 * A git repository.  The PyPT is ready to go if you use GitHub.  If you do not
@@ -64,71 +64,31 @@ The template contains the following files to get you started:
   * committing into git, finishing the ``git flow`` release
   * creating a GitHub Releases entry
 
-Getting up to speed in 16 easy steps
+Getting up to speed in 12 easy steps
 ====================================
 
 1. Create the repository for the project on GitHub and enable it on Travis CI.
-2. Manually change ``Kwpolska`` to your GitHub name in the following files:
-
-   1. ``/docs/README.rst``, line 10
-   2. ``/docs/CHANGELOG.rst``, line 10
-   3. ``/setup.py``, line 14
-   4. ``/PKGBUILD{,-2}{,-git}``, in ``url`` and ``source`` (git only)
-
-3. Manually change the ``Maintainer`` line in ``/PKGBUILD{,-2}{,-git}``.
-4. Replace the following patterns (eg. with sed), in all files, **excluding
-   dotfiles**:
-
-   1. ``TEMPLATE`` with the full name of the project
-   2. ``tEmplate`` with a “light” name of the project [a-z0-9\_\\-], which will
-      be used in the PyPI, AUR, and a few other places.  You can use capital
-      letters if you feel like it, but it is discouraged and was not tested.
-   3. ``python-project-template`` with the GitHub repo name
-   4. ``INSERT TAGLINE HERE.`` with a tagline of your choice
-   5. ``chris@chriswarrick.com`` with your e-mail address
-   6. ``Kwpolska`` and/or ``Chris Warrick`` with your name (affects mostly copyright notices)
-
-   WARNING: some files are in the copyright of Chris Warrick and must stay this
-   way!  They are listed in the license, please keep my name there, otherwise
-   you risk breaking the law.
-
-4. Rename ``/tEmplate`` to the name used in 4.2.
-5. Modify ``/docs/README.rst`` to reflect your project and not the Template
-   (and make a copy if you are reading it locally from those files)
-6. Copy: (when using the included ``release`` script, it happens automatically)
+2. Run ``cookiecutter``.
+3. Modify all documents: match under/overlines, write real content.
+4. Copy: (when using the included ``release`` script, it happens automatically)
 
    1. ``/docs/README.rst`` to ``/README.rst`` and ``/README``
    2. ``/docs/CHANGELOG.rst`` to ``/CHANGELOG.rst``
 
-7. Modify ``/.pypt/config``.
-8. Generate a `GitHub Personal Access Token <https://github.com/settings/tokens>`_ and write it to a ``/.pypt/gh-token`` file.
-9. Customize ``/setup.py`` to your liking.  You should pay attention to the
+5. Modify ``/.pypt/config``, if needed.
+6. Generate a `GitHub Personal Access Token <https://github.com/settings/tokens>`_ and write it to a ``/.pypt/gh-token`` file.
+7. Customize ``/setup.py`` to your liking.  You should pay attention to the
    classifiers and the commented parts.
-10. Customize ``requirements.txt``.
-11. If you are using PyQt4 or PySide, make sure to put your UI code in a ``ui``
+8. Customize ``requirements.txt``.
+9. If you are using PyQt4 or PySide, make sure to put your UI code in a ``ui``
     submodule.  Copy over the ``/QT-ADDONS/resources.py`` file to that
-    submodule, even if you are not using resources now.
-12. Remove the ``/QT-ADDONS/`` directory.
-13. If you are using Qt, make sure to create a ``.pro`` file with your sources
-    and locales.
-14. Read the COPYRIGHT section below (or ``LICENSE.PyPT``) and remove
-    ``/LICENSE.PyPT`` and ``/README.PyPT``.  If you believe the BSD license presented by the
-    ``/LICENSE`` file is not the license you want, here is a list of files you
-    should modify:
+    submodule, even if you are not using resources now. Make sure to create a
+    ``.pro`` file with your sources and locales.
+10. Remove the ``/QT-ADDONS/`` directory.
+11. If you have a ``PYPT-UPDATE`` script, add your new project to the list
+    there.  If not, you may want to copy it from the repository root and set it up.
+12. Run the following commands::
 
-    1. ``/tests.py``
-    2. Everything in the Python package directory (twice in many cases)
-    3. Everything in ``/docs``
-    4. ``/LICENSE``, which is **not** equivalent to ``/docs/LICENSE.rst``
-
-    PS. GNU GPL is not a good idea.  You can use it, but the world would be
-    much happier if you did not.
-
-15. If you have a ``PYPT-UPDATE`` script, add your new project to the list
-    there.  If not, you may want to copy it from ``.pypt`` and set it up.
-16. Run the following commands::
-
-        rm -rf .git .pypt/PYPT-UPDATE
         source .pypt/config
         git init
         git remote add origin git@github.com:$GITUSER/$GITREPO
@@ -152,9 +112,6 @@ commercial (a.k.a. proprietary) license, you must contact me first.
 * /.pypt/commitlog
 * /.pypt/ghrel
 * /.pypt/localegen
-* /.pypt/PYPT-UPDATE
-* /.pypt/README.rst
-* /.pypt/LICENSE.PyPT
 * /docs/CONTRIBUTING.rst
 * /CONTRIBUTING.rst
 * /release
