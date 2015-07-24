@@ -8,7 +8,7 @@
 :Version: {{ cookiecutter.version }}
 
 .. index: README
-.. image:: https://travis-ci.org/Kwpolska/{{ cookiecutter.repo_name }}.png?branch=master
+.. image:: https://travis-ci.org/Kwpolska/{{ cookiecutter.repo_name }}.svg?branch=master
 
 PURPOSE
 -------

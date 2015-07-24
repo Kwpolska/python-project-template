@@ -8,7 +8,7 @@ Python Project Template.  INSERT TAGLINE HERE.™
 :Version: 2.0.0
 
 .. index: README
-.. image:: https://travis-ci.org/Kwpolska/python-project-template.png?branch=master
+.. image:: https://travis-ci.org/Kwpolska/python-project-template.svg?branch=master
 
 USING THE TEMPLATE
 ------------------
