@@ -8,7 +8,6 @@ python:
 
 install:
  - "pip install -r requirements.txt"
- - "pip install pytest pytest-cov coverage"
 
 script:
  - "cookiecutter --no-input ."

@@ -1,3 +1,6 @@
 requests
 twine
 cookiecutter
+pytest
+coverage
+pytest-cov
