@@ -5,8 +5,8 @@ PyPT Changelog
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2015, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2015-07-11
-:Version: 2.0.0
+:Date: 2015-07-29
+:Version: 2.0.1
 
 .. index:: CHANGELOG
 
@@ -19,6 +19,9 @@ More information can be found on GitHub in the `releases section
 Version History
 ===============
 
+v2.0.1
+    * ``MAINFEST.in`` file
+    * Minor bugfixes
 
 v2.0.0
     * Automation (using cookiecutter)
