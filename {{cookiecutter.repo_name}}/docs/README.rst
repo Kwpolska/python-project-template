@@ -1,7 +1,7 @@
-===============================================================================
-{{ cookiecutter.project_name }}.  {{ cookiecutter.project_short_description }}.
-===============================================================================
-:Info: This is the README file for {{ cookiecutter.project_name }}
+==============================================================================
+{{ cookiecutter.project_name }}.  {{ cookiecutter.project_short_description }}
+==============================================================================
+:Info: This is the README file for {{ cookiecutter.project_name }}.
 :Author: {{ cookiecutter.full_name }} <{{ cookiecutter.email }}>
 :Copyright: © {{ cookiecutter.year }}, {{ cookiecutter.full_name }}.
 :Date: {{ cookiecutter.release_date }}
