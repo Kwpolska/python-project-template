@@ -206,4 +206,4 @@ git push --tags
 cleanup_cmfn
 
 status "Done!"
-.pypt/hooks/post-release.hook
+. .pypt/hooks/post-release.hook
