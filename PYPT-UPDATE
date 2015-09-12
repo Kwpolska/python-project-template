@@ -1,9 +1,10 @@
 #!/usr/bin/zsh
 PYPT_ROOT=$HOME/git/python-project-template/{{cookiecutter.repo_name}}
 PYPT_COMPONENTS=(release .pypt/commitlog .pypt/ghrel)
-PYPT_PROJECTS=("$HOME/git/pkgbuilder" "$HOME/git/coil" "$HOME/git/timerge" "$HOME/git/upass")
+PYPT_PROJECTS=("$HOME/git/pkgbuilder" "$HOME/git/coil" "$HOME/git/upass" "$HOME/git/cheqlist")
 
 for p in $PYPT_PROJECTS; do
+    echo "==> $p"
     for c in $PYPT_COMPONENTS; do
         cp -v $PYPT_ROOT/$c $p/$c
     done

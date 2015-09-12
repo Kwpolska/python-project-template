@@ -14,10 +14,13 @@ GitHub holds releases, too
 ==========================
 
 More information can be found on GitHub in the `releases section
-<https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}/releases>`_.
+<https://github.com/Kwpolska/python-project-template/releases>`_.
 
 Version History
 ===============
+
+v2.0.2
+    * Add ``post-release.hook`` (at the very end, perfect for “Next steps” messages)
 
 v2.0.1
     * ``MAINFEST.in`` file
