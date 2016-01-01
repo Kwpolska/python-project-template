@@ -3,10 +3,10 @@ PyPT Changelog
 ==============
 :Info: This is the changelog for PyPT.
 :Author: Chris Warrick <chris@chriswarrick.com>
-:Copyright: © 2015, Chris Warrick.
+:Copyright: © 2013-2016, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2015-07-29
-:Version: 2.0.1
+:Date: 2016-01-01
+:Version: 2.0.3
 
 .. index:: CHANGELOG
 
@@ -18,6 +18,9 @@ More information can be found on GitHub in the `releases section
 
 Version History
 ===============
+
+v2.0.3
+    * Update dates to 2016
 
 v2.0.2
     * Add ``post-release.hook`` (at the very end, perfect for “Next steps” messages)
