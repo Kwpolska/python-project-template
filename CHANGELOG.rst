@@ -5,8 +5,8 @@ PyPT Changelog
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2016, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2016-01-01
-:Version: 2.0.3
+:Date: 2016-03-04
+:Version: 2.0.4
 
 .. index:: CHANGELOG
 
@@ -18,6 +18,10 @@ More information can be found on GitHub in the `releases section
 
 Version History
 ===============
+
+v2.0.4
+    * Split out wildcard removal that may fail so that other cleanup works fine
+    * Don’t remove the ``dist`` directory
 
 v2.0.3
     * Update dates to 2016

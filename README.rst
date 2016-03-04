@@ -4,8 +4,8 @@ Python Project Template.  INSERT TAGLINE HERE.™
 :Info: This is the README file for the Python Project Template.
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2016, Chris Warrick.
-:Date: 2016-01-01
-:Version: 2.0.3
+:Date: 2016-03-04
+:Version: 2.0.4
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/python-project-template.svg?branch=master
@@ -46,7 +46,8 @@ The template contains the following files to get you started:
   as they are replaced with copies in ``/docs`` by the ``release``
   script
 * ``__init__.py`` and ``template.py`` files in the Python package directory
-* A good-enough ``setup.py`` file
+* A ``setup.py`` file that could be good enough for people, and that supports
+  ``entry_points`` (see https://go.chriswarrick.com.entry_points).
 * ``tests/`` containing some *Is My Python Sane?*-style tests (using ``py.test``)
 * An automated global update script (``.pypt/PYPT-UPDATE``)
 * Entry points configuration ready to be uncommented

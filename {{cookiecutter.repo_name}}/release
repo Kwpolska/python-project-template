@@ -46,7 +46,8 @@ function error {
 }
 
 function cleanup {
-    rm -rf $PROJECTLC.egg-info **/__pycache__ dist build
+    rm -rf $PROJECTLC.egg-info build
+    rm -rf **/__pycache__
 }
 
 function cleanup_cmfn {
@@ -187,7 +188,7 @@ read bailout
 ./setup.py sdist bdist_wheel
 twine upload -s dist/$PROJECTLC-$version.tar.gz dist/$PROJECTLC-$version*.whl
 
-status 'Updating AUR PKGBUILDs...'
+[[ -e PKGBUILD ]] && status 'Updating AUR PKGBUILDs...'
 [[ -e PKGBUILD ]] && md5out=$(md5sum 'dist/'$PROJECTLC'-'$version'.tar.gz'|awk '{print $1}')
 [[ -e PKGBUILD ]] && sed "s/md5sums=.*/md5sums=('$md5out')/" PKGBUILD -i
 
