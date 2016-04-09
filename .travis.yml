@@ -13,7 +13,7 @@ install:
 script:
  - "cookiecutter --no-input ."
  - "cd pypt"
- - "py.test --cov pypt --cov-report term-missing tests/"
+ - "py.test tests/"
 
 notifications:
   email:
