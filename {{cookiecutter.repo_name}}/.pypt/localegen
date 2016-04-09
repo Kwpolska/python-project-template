@@ -47,16 +47,16 @@ case "$LOCALETYPE" in
         pot='# '$PROJECT' pot file.
 # Copyright © {{ cookiecutter.year }}, {{ cookiecutter.full_name }}.
 # This file is distributed under the same license as the '$PROJECT' package.
-# {{ cookiecutter.real_name }} <{{ cookiecutter.email }}>, {{ cookiecutter.year }}.
+# {{ cookiecutter.full_name }} <{{ cookiecutter.email }}>, {{ cookiecutter.year }}.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: #version\\n"
-"Report-Msgid-Bugs-To: {{ cookiecutter.real_name }} <{{ cookiecutter.email }}>\\n"
+"Report-Msgid-Bugs-To: {{ cookiecutter.full_name }} <{{ cookiecutter.email }}>\\n"
 "POT-Creation-Date: #datel\\n"
 "PO-Revision-Date: #datel\\n"
-"Last-Translator: {{ cookiecutter.real_name }} <{{ cookiecutter.email }}>\\n"
-"Language-Team: {{ cookiecutter.real_name }} <{{ cookiecutter.email }}>\\n"
+"Last-Translator: {{ cookiecutter.full_name }} <{{ cookiecutter.email }}>\\n"
+"Language-Team: {{ cookiecutter.full_name }} <{{ cookiecutter.email }}>\\n"
 "Language: en\\n"
 "MIME-Version: 1.0\\n"
 "Content-Type: text/plain; charset=UTF-8\\n"
