@@ -179,7 +179,7 @@ htmlhelp_basename = '{{ cookiecutter.project_name }}doc'
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', '{{ cookiecutter.repo_name }}.tex', u'{{ cookiecutter.project_name }} Documentation',
-   u'{{ cookiecutter.real_name }}', 'manual'),
+   u'{{ cookiecutter.full_name }}', 'manual'),
 ]
 
 latex_elements = {'papersize': 'a4paper', 'fontpkg': '\\usepackage{tgheros}',
@@ -215,7 +215,7 @@ latex_elements = {'papersize': 'a4paper', 'fontpkg': '\\usepackage{tgheros}',
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', '{{ cookiecutter.repo_name }}', u'{{ cookiecutter.project_name }} Documentation',
-     [u'{{ cookiecutter.real_name }}'], 1)
+     [u'{{ cookiecutter.full_name }}'], 1)
 ]
 
 
