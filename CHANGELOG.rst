@@ -25,7 +25,7 @@ v2.0.5
       ``requirements.txt``, removes support for ``./setup.py test``)
     * Sample hook for AUR updates
     * Fixes to tests and ``localegen``
-    * Move Qt addons to ``extras/`` directory
+    * Move Qt addons to ``pypt-extras/`` directory
 
 v2.0.4
     * Split out wildcard removal that may fail so that other cleanup works fine
