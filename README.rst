@@ -51,7 +51,7 @@ The template contains the following files to get you started:
 * ``tests/`` containing some *Is My Python Sane?*-style tests (using ``py.test``)
 * An automated global update script (``.pypt/PYPT-UPDATE``)
 * Entry points configuration ready to be uncommented
-* Addons for Qt users
+* Addons for Qt users (in ``extras/``)
 * PKGBUILDs for the Arch Linux User Repository (AUR)
 * A state-of-the-art ``release`` script, the operations of which are:
 
@@ -65,7 +65,7 @@ The template contains the following files to get you started:
   * committing into git, finishing the ``git flow`` release
   * creating a GitHub Releases entry
 
-Getting up to speed in 12 easy steps
+Getting up to speed in 11 easy steps
 ====================================
 
 1. Create the repository for the project on GitHub and enable it on Travis CI.
@@ -82,13 +82,12 @@ Getting up to speed in 12 easy steps
    classifiers and the commented parts.
 8. Customize ``requirements.txt``.
 9. If you are using PyQt4 or PySide, make sure to put your UI code in a ``ui``
-    submodule.  Copy over the ``/QT-ADDONS/resources.py`` file to that
+    submodule.  Copy the ``/extras/Qt/resources.py`` file to that
     submodule, even if you are not using resources now. Make sure to create a
     ``.pro`` file with your sources and locales.
-10. Remove the ``/QT-ADDONS/`` directory.
-11. If you have a ``PYPT-UPDATE`` script, add your new project to the list
+10. If you have a ``PYPT-UPDATE`` script, add your new project to the list
     there.  If not, you may want to copy it from the repository root and set it up.
-12. Run the following commands::
+11. Run the following commands::
 
         source .pypt/config
         git init
