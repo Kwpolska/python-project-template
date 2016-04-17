@@ -4,8 +4,8 @@ Python Project Template.  INSERT TAGLINE HERE.™
 :Info: This is the README file for the Python Project Template.
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2016, Chris Warrick.
-:Date: 2016-03-04
-:Version: 2.0.4
+:Date: 2016-04-17
+:Version: 2.0.5
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/python-project-template.svg?branch=master
@@ -40,18 +40,20 @@ The template contains the following files to get you started:
   * ``CONTRIBUTING.rst`` guide (used by GitHub when sending a pull request or an issue)
   * ``LICENSE.rst``
   * an empty ``CHANGELOG.rst``
-  * this (worthless for most people) ``README.rst`` and a bare-bones ``index.rst`` page
+  * ``README.rst``
+  * a bare-bones ``index.rst`` page
 
 * The exact same files in ``/``, which are fragile and **MAY NOT** be modified
   as they are replaced with copies in ``/docs`` by the ``release``
   script
 * ``__init__.py`` and ``template.py`` files in the Python package directory
 * A ``setup.py`` file that could be good enough for people, and that supports
-  ``entry_points`` (see https://go.chriswarrick.com.entry_points).
+  ``entry_points`` (see https://go.chriswarrick.com/entry_points).
 * ``tests/`` containing some *Is My Python Sane?*-style tests (using ``py.test``)
 * An automated global update script (``.pypt/PYPT-UPDATE``)
 * Entry points configuration ready to be uncommented
-* Addons for Qt users (in ``extras/``)
+* Addons for Qt users (in ``pypt-extras/``)
+* A sample hook for AUR updates (in ``pypt-extras``)
 * PKGBUILDs for the Arch Linux User Repository (AUR)
 * A state-of-the-art ``release`` script, the operations of which are:
 
@@ -65,7 +67,7 @@ The template contains the following files to get you started:
   * committing into git, finishing the ``git flow`` release
   * creating a GitHub Releases entry
 
-Getting up to speed in 11 easy steps
+Getting up to speed in 12 easy steps
 ====================================
 
 1. Create the repository for the project on GitHub and enable it on Travis CI.
@@ -79,15 +81,16 @@ Getting up to speed in 11 easy steps
 5. Modify ``/.pypt/config``, if needed.
 6. Generate a `GitHub Personal Access Token <https://github.com/settings/tokens>`_ and write it to a ``/.pypt/gh-token`` file.
 7. Customize ``/setup.py`` to your liking.  You should pay attention to the
-   classifiers and the commented parts.
+   classifiers and the commented-out parts.
 8. Customize ``requirements.txt``.
-9. If you are using PyQt4 or PySide, make sure to put your UI code in a ``ui``
-    submodule.  Copy the ``/extras/Qt/resources.py`` file to that
+9. If you are using PyQt or PySide, make sure to put your UI code in a ``ui``
+    submodule.  Copy the ``pypt-extras/Qt/resources.py`` file to that
     submodule, even if you are not using resources now. Make sure to create a
     ``.pro`` file with your sources and locales.
-10. If you have a ``PYPT-UPDATE`` script, add your new project to the list
+10. Remove the ``pypt-extras`` directory if you don’t need anything else from it.
+11. If you have a ``PYPT-UPDATE`` script, add your new project to the list
     there.  If not, you may want to copy it from the repository root and set it up.
-11. Run the following commands::
+12. Run the following commands::
 
         source .pypt/config
         git init
@@ -112,6 +115,10 @@ commercial (a.k.a. proprietary) license, you must contact me first.
 * /.pypt/commitlog
 * /.pypt/ghrel
 * /.pypt/localegen
+* /.pypt/PYPT-UPDATE
+* /.pypt/README.rst
+* /.pypt/LICENSE.PyPT
+* /pypt-extras/AUR_post-release.hook
 * /docs/CONTRIBUTING.rst
 * /CONTRIBUTING.rst
 * /release

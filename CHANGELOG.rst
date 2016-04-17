@@ -5,8 +5,8 @@ PyPT Changelog
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2016, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2016-03-04
-:Version: 2.0.4
+:Date: 2016-04-17
+:Version: 2.0.5
 
 .. index:: CHANGELOG
 
@@ -18,6 +18,14 @@ More information can be found on GitHub in the `releases section
 
 Version History
 ===============
+
+v2.0.5
+    * Put test setup in ``setup.cfg``
+    * More modern ``setup.py`` (uses ``package_data`` and ``find_packages()``, does not use
+      ``requirements.txt``, removes support for ``./setup.py test``)
+    * Sample hook for AUR updates
+    * Fixes to tests and ``localegen``
+    * Move Qt addons to ``extras/`` directory
 
 v2.0.4
     * Split out wildcard removal that may fail so that other cleanup works fine
