@@ -112,6 +112,24 @@ msgstr ""
             pyrcc4 -py2 $PROJECTLC.qrc -o $PROJECTLC/ui/resources2.py
             pyrcc4 -py3 $PROJECTLC.qrc -o $PROJECTLC/ui/resources3.py
     ;;
+    'pyqt5' | 'pyqt5-tx')
+        pylupdate5 -verbose $PROJECTLC.pro
+        if [[ "$LOCALETYPE" == "pyqt5-tx" ]]; then
+            tx push -s
+            tx pull
+        fi
+        for i in ./locale/*.ts; do
+            # pylupdate5 is dumb and mangles encodings
+            sed -i -e 's|filename="|filename="../|g' -e \
+            's|&#xe2;&#x80;&#x9c;|“|g' -e 's|&#xe2;&#x80;&#x9d;|”|g' -e \
+            's|&#xe2;&#x80;&#x98;|‘|g' -e 's|&#xe2;&#x80;&#x99;|’|g' -e \
+            's|&#xe2;&#x80;&#xa6;|…|g' -e 's|&#xe2;&#x80;&#x93;|–|g' -e \
+            's|&#xe2;&#x80;&#x94;|—|g' $i
+            done
+            lrelease $PROJECTLC.pro
+            pyrcc5 -py2 $PROJECTLC.qrc -o $PROJECTLC/ui/resources2.py
+            pyrcc5 -py3 $PROJECTLC.qrc -o $PROJECTLC/ui/resources3.py
+    ;;
     'pyside' | 'pyside-tx')
         pyside-lupdate -verbose $PROJECTLC.pro
         if [[ "$LOCALETYPE" == "pyside-tx" ]]; then
