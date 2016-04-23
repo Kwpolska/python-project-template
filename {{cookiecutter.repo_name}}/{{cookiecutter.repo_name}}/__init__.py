@@ -48,5 +48,5 @@ __docformat__ = 'restructuredtext en'
 __all__ = ()
 
 # import gettext
-# G = gettext.translation('{{ cookiecutter.project_name }}', '/usr/share/locale', fallback='C')
+# G = gettext.translation('{{ cookiecutter.repo_name }}', '/usr/share/locale', fallback='C')
 # _ = G.gettext
