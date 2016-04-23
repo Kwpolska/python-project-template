@@ -1,7 +1,7 @@
 #!/usr/bin/zsh
 PYPT_ROOT=$HOME/git/python-project-template/{{cookiecutter.repo_name}}
 PYPT_COMPONENTS=(release .pypt/commitlog .pypt/ghrel)
-PYPT_PROJECTS=("$HOME/git/pkgbuilder" "$HOME/git/coil" "$HOME/git/upass" "$HOME/git/cheqlist" "$HOME/git/kwpbar.py")
+PYPT_PROJECTS=("$HOME/git/pkgbuilder" "$HOME/git/coil" "$HOME/git/upass" "$HOME/git/cheqlist" "$HOME/git/kwpbar.py" "$HOME/git/datecalc")
 
 for p in $PYPT_PROJECTS; do
     echo "==> $p"
