@@ -196,9 +196,9 @@ cleanup
 
 git add -A --ignore-errors .
 
-git commit -asF $cmfn2
+git commit -S -asF $cmfn2
 
-git flow release finish $version
+git flow release finish -s -m "Version $version" $version
 git push
 git push --tags
 
