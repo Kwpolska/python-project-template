@@ -5,8 +5,8 @@ PyPT Changelog
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2016, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2016-04-17
-:Version: 2.0.5
+:Date: 2016-04-29
+:Version: 2.0.6
 
 .. index:: CHANGELOG
 
@@ -18,6 +18,13 @@ More information can be found on GitHub in the `releases section
 
 Version History
 ===============
+
+v2.0.6
+    * Sign releases commits and tags
+    * Use new PyPI URL scheme in PKGBUILDs
+    * Use correct file name for coverage exclude
+    * Use repo name for gettext domain
+    * Experimental support for PyQt5 in ``localegen``
 
 v2.0.5
     * Put test setup in ``setup.cfg``

@@ -4,8 +4,8 @@ Python Project Template.  INSERT TAGLINE HERE.™
 :Info: This is the README file for the Python Project Template.
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2016, Chris Warrick.
-:Date: 2016-04-17
-:Version: 2.0.5
+:Date: 2016-04-29
+:Version: 2.0.6
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/python-project-template.svg?branch=master
@@ -18,16 +18,13 @@ Requirements
 
 * ``zsh`` installed (required by ``/release`` and ``/.pypt/localegen`` scripts)
 * Python with ``cookiecutter`` (initial generation), ``requests`` (required by ``/.pypt/{commitlog,ghrel}``) and ``twine`` (required by ``/release``) installed
-* `git-flow extensions by nvie <https://github.com/nvie/gitflow>`_ (alternatively yo can manually alter the ``/release`` script, and that is much harder than
+* `git-flow extensions by nvie <https://github.com/nvie/gitflow>`_ (alternatively you can manually alter the ``/release`` script, and that is much harder than
   installing the extensions)
 * A git repository.  The PyPT is ready to go if you use GitHub.  If you do not
   want GitHub, edit the ``/PKGBUILD{,-2}{,-git}`` files and any other places
   where GitHub is mentioned, including this document which you should edit
   mentally.
-
-Recommended possessions
-=======================
-
+* PGP/GPG setup (for signing release commits and tags)
 * Travis CI account (if you do not want Travis CI, remove ``/.travis.yml``)
 
 Contents
