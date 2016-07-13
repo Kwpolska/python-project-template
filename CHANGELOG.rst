@@ -20,7 +20,7 @@ Version History
 ===============
 
 2.0.7
-    * Make some minor changes to CHANGELOG.txt
+    * Make some minor changes to CONTRIBUTING.rst
     * Use Python 3.5 in Travis
 
 2.0.6
