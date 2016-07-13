@@ -8,7 +8,8 @@
 :Version: {{ cookiecutter.version }}
 
 .. index: README
-.. image:: https://travis-ci.org/Kwpolska/{{ cookiecutter.repo_name }}.svg?branch=master
+.. image:: https://travis-ci.org/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}.svg?branch=master
+   :target: https://travis-ci.org/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}
 
 PURPOSE
 -------
@@ -21,7 +22,6 @@ USAGE
 
 NOTES
 -----
-
 
 COPYRIGHT
 ---------
