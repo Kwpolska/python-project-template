@@ -80,7 +80,7 @@ def main():
     parser.add_argument('basedir', metavar='BASEDIR', nargs=1,
                         help='Project directory')
     parser.add_argument('new_version', metavar='NEWVERSION', nargs=1,
-                        help='New version (vX.Y.Z)')
+                        help='New version (X.Y.Z)')
     args = parser.parse_args()
     # nargs gets you lists, not strings
     filename = args.filename[0]

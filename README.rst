@@ -4,8 +4,8 @@ Python Project Template.  INSERT TAGLINE HERE.™
 :Info: This is the README file for the Python Project Template.
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2016, Chris Warrick.
-:Date: 2016-04-29
-:Version: 2.0.6
+:Date: 2016-07-13
+:Version: 2.0.7
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/python-project-template.svg?branch=master

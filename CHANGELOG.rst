@@ -5,8 +5,8 @@ PyPT Changelog
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2016, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2016-04-29
-:Version: 2.0.6
+:Date: 2016-07-13
+:Version: 2.0.7
 
 .. index:: CHANGELOG
 
@@ -19,14 +19,18 @@ More information can be found on GitHub in the `releases section
 Version History
 ===============
 
-v2.0.6
+2.0.7
+    * Make some minor changes to CHANGELOG.txt
+    * Use Python 3.5 in Travis
+
+2.0.6
     * Sign releases commits and tags
     * Use new PyPI URL scheme in PKGBUILDs
     * Use correct file name for coverage exclude
     * Use repo name for gettext domain
     * Experimental support for PyQt5 in ``localegen``
 
-v2.0.5
+2.0.5
     * Put test setup in ``setup.cfg``
     * More modern ``setup.py`` (uses ``package_data`` and ``find_packages()``, does not use
       ``requirements.txt``, removes support for ``./setup.py test``)
@@ -34,24 +38,24 @@ v2.0.5
     * Fixes to tests and ``localegen``
     * Move Qt addons to ``pypt-extras/`` directory
 
-v2.0.4
+2.0.4
     * Split out wildcard removal that may fail so that other cleanup works fine
     * Don’t remove the ``dist`` directory
 
-v2.0.3
+2.0.3
     * Update dates to 2016
 
-v2.0.2
+2.0.2
     * Add ``post-release.hook`` (at the very end, perfect for “Next steps” messages)
 
-v2.0.1
+2.0.1
     * ``MAINFEST.in`` file
     * Minor bugfixes
 
-v2.0.0
+2.0.0
     * Automation (using cookiecutter)
 
-v1.3.1
+1.3.1
 
     .. code:: text
 
@@ -63,7 +67,7 @@ v1.3.1
              `  -+-  --------------  -+-  '
                '-:-'                '-:-'
 
-v1.3.0
+1.3.0
     * Use ``argparse`` in ``commitlog`` and ``ghrel`` instead of a ``sys.argv`` hack
     * Vendor ``textwrap.indent`` in ``commitlog`` for Python 2 compatibility
     * Use ``py.test`` in the ``release`` script
@@ -71,59 +75,59 @@ v1.3.0
     * Create and upload wheels
 
 
-v1.2.1
+1.2.1
     * Use new tests in .travis.yml.
 
 
-v1.2.0
+1.2.0
     * Better tests, stored in a directory and using py.test instead of unittest.
 
 
-v1.1.2
+1.1.2
     * Add ``.pypt/PYPT-UPDATE`` script (copy it somewhere else and customize to your liking)
 
 
-v1.1.1
+1.1.1
     * Fix ``$cmfn`` variables in ``./release``
     * Print correct release URL (``html_url`` for friendly webpage)
     * Support Transifex in locale generation (``-tx`` suffix)
 
 
-v1.1.0
+1.1.0
     * Automate GitHub Releases posting. (For CMFN-based files, ``backticks`` are automatically corrected.)
 
-v1.0.9
+1.0.9
     * Fix mismatched paths in the commit and changelog editor (cmfn) — requries update of ``.pypt/commitlog`` and ``release``
     * PEP 257 compliance
 
-v1.0.8
+1.0.8
     * Update Sphinx ``version`` field (previously, only ``release`` was updated)
 
-v1.0.7
+1.0.7
     * no more AUR uploads due to AURv4
 
-v1.0.6
+1.0.6
     * Use ``twine`` instead of ``setup.py upload``
     * Fix ``aursend`` path
 
-v1.0.5
+1.0.5
     Updating all dates to say 2015.
 
-v1.0.4
+1.0.4
     * Rebranding: removing nickname from all *Author* lines.
 
-v1.0.3
+1.0.3
     * changed e-mail address
     * setup.cfg
     * setuptools entry_points
     * py.test
 
-v1.0.2
+1.0.2
     * Set the © fields to 2014.
 
-v1.0.1
+1.0.1
     * Some small changes and fixes.
 
-v1.0.0
+1.0.0
     * Initial release.
 
