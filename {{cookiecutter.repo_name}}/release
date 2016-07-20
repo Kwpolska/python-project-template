@@ -55,7 +55,7 @@ function cleanup_cmfn {
     [[ -e $cmfn2 ]] && rm $cmfn2 || true
 }
 
-status '*** Kw’s Release Scripts'
+status '*** Chris Warrick’s Release Scripts (PyPT)'
 
 branch=$(git rev-parse --abbrev-ref HEAD)
 if [[ $? != 0 ]]; then
@@ -111,7 +111,7 @@ cleanup_cmfn
 git add -A --ignore-errors .
 
 cat > $cmfn <<EOF
-#~ Kw’s Release Scripts
+#~ Chris Warrick’s Release Scripts (PyPT)
 #~ Please write your commit and changelog messages.
 #~ You may use reST formatting in the latter.
 #~ Please make the first line of your commit message short.
