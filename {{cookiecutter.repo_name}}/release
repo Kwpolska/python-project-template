@@ -1,7 +1,7 @@
 #!/bin/zsh
 # The Release Script
 # Part of the Python Project Template.
-# Copyright © 2013-2016, Chris Warrick.
+# Copyright © 2013-2016, Chris Warrick.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -46,13 +46,13 @@ function error {
 }
 
 function cleanup {
-    rm -rf $PROJECTLC.egg-info build
-    rm -rf **/__pycache__
+    rm -rf $PROJECTLC.egg-info build || true
+    rm -rf **/__pycache__ || true
 }
 
 function cleanup_cmfn {
-    [[ -e $cmfn ]] && rm $cmfn
-    [[ -e $cmfn2 ]] && rm $cmfn2
+    [[ -e $cmfn ]] && rm $cmfn || true
+    [[ -e $cmfn2 ]] && rm $cmfn2 || true
 }
 
 status '*** Kw’s Release Scripts'
@@ -97,7 +97,7 @@ if [[ $? != 0 ]]; then
     fi
 fi
 
-# I am creating all the dates at the exact same time.
+# Creating all the dates at the exact same time.
 date=$(date '+%Y-%m-%d')
 datel=$(date '+%Y-%m-%d %H:%M%z')
 #datep=$(date '+%Y%m%d')
@@ -140,7 +140,6 @@ else
 fi
 
 .pypt/commitlog $cmfn $PWD $version
-[[ $? != 0 ]] && exit $?
 
 status 'Replacing versions and dates in files...'
 sed "s/version=.*/version='$version',/g" setup.py -i
@@ -151,10 +150,8 @@ sed "s/# $PROJECT v.*/# $PROJECT v$version/" $PROJECTLC/**/*.py -i
 sed "s/__version__ = .*/__version__ = '$version'/g" $PROJECTLC/__init__.py -i
 sed "s/:Date: .*/:Date: $date/g" docs/*.rst -i
 
-[[ -e PKGBUILD ]] && sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD -i
-[[ -e PKGBUILD-git ]] && sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD-git -i
-[[ -e PKGBUILD-2 ]] && sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD-2 -i
-[[ -e PKGBUILD-2-git ]] && sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD-2-git -i
+sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD -i || true
+sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD-git -i || true
 
 cp docs/README.rst docs/CHANGELOG.rst docs/CONTRIBUTING.rst .
 cp docs/README.rst README
@@ -164,7 +161,7 @@ status 'Generating locales...'
 
 status 'Importing...'
 python -c "import $PROJECTLC"
-if [[ $? = 1 ]]; then
+if [[ $? == 1 ]]; then
     error "Import failed.  Fix your code or don't come back."
     exit 1
 fi
@@ -172,7 +169,7 @@ fi
 if [[ -e tests ]]; then
     status 'Running tests...'
     py.test tests/
-    if [[ $? = 1 ]]; then
+    if [[ $? == 1 ]]; then
         error "Tests failed.  Fix your code or don't come back."
         exit 1
     fi
@@ -185,22 +182,24 @@ status 'Running pre-sdist.hook...'
 status 'This is the last chance to quit.  Hit ^C now if you want to.'
 read bailout
 
-./setup.py sdist bdist_wheel
-twine upload -s dist/$PROJECTLC-$version.tar.gz dist/$PROJECTLC-$version*.whl
+./setup.py sdist bdist_wheel || exit $?
+twine upload -s dist/$PROJECTLC-$version.tar.gz dist/$PROJECTLC-$version*.whl || exit $?
 
-[[ -e PKGBUILD ]] && status 'Updating AUR PKGBUILDs...'
-[[ -e PKGBUILD ]] && md5out=$(md5sum 'dist/'$PROJECTLC'-'$version'.tar.gz'|awk '{print $1}')
-[[ -e PKGBUILD ]] && sed "s/md5sums=.*/md5sums=('$md5out')/" PKGBUILD -i
+if [[ -e PKGBUILD ]]; then
+    status 'Updating AUR PKGBUILDs...'
+    md5out=$(md5sum 'dist/'$PROJECTLC'-'$version'.tar.gz'|awk '{print $1}')
+    sed "s/md5sums=.*/md5sums=('$md5out')/" PKGBUILD -i
+fi
 
 cleanup
 
-git add -A --ignore-errors .
+git add -A --ignore-errors . || exit $?
 
-git commit -S -asF $cmfn2
+git commit -S -asF $cmfn2 || exit $?
 
-git flow release finish -s -m "Version $version" $version
-git push
-git push --tags
+git flow release finish -s -m "Version $version" $version || exit $?
+git push || exit $?
+git push --tags || exit $?
 
 .pypt/ghrel $cmfn $PWD $GITUSER/$GITREPO v$version
 
