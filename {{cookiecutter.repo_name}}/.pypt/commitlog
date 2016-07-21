@@ -88,7 +88,7 @@ def main():
     new_version = args.new_version[0]
 
     with open(filename) as fh:
-        e = re.findall('#~ C(.*?) MESSAGE START ~#\n(.*?)\n#~ C(.*?) MESSAGE '
+        e = re.findall('#~ (C[A-Z]+) MESSAGE START ~#\n(.*?)\n#~ (C[A-Z]+) MESSAGE '
                        'END ~#', fh.read(), flags=re.S)
 
     for i in e:
@@ -97,7 +97,6 @@ def main():
             print('ERROR: mismatched tags')
             return 1
         else:
-            i[0] = 'C' + i[0]  # regexp hack
             if i[0] == 'COMMIT':
                 with open(filename + '-commit', 'w') as fh:
                     fh.write(i[1])

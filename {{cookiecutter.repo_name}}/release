@@ -138,8 +138,8 @@ sed "s/# $PROJECT v.*/# $PROJECT v$version/" $PROJECTLC/**/*.py -i
 sed "s/__version__ = .*/__version__ = '$version'/g" $PROJECTLC/__init__.py -i
 sed "s/:Date: .*/:Date: $date/g" docs/*.rst -i
 
-sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD -i || true
-sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD-git -i || true
+[[ -e "PKGBUILD" ]] && sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD -i || true
+[[ -e "PKGBUILD-git" ]] && sed "s/pkgver=.*/pkgver=$version/g" PKGBUILD-git -i || true
 
 cp docs/README.rst docs/CHANGELOG.rst docs/CONTRIBUTING.rst .
 cp docs/README.rst README

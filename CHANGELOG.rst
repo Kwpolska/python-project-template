@@ -6,7 +6,7 @@ PyPT Changelog
 :Copyright: © 2013-2016, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
 :Date: 2016-07-21
-:Version: 2.1.0
+:Version: 2.1.1
 
 .. index:: CHANGELOG
 
@@ -18,6 +18,10 @@ More information can be found on GitHub in the `releases section
 
 Version History
 ===============
+
+2.1.1
+    * Fix ``commitlog`` crashing due to a regex glitch (turns out ``C(.*?)``
+      will match ``Chris``; changed to ``(C[A-Z]+)``)
 
 2.1.0
     * Get rid of ``git flow`` — users should switch their main branch to
