@@ -5,8 +5,8 @@ PyPT Changelog
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2016, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2016-07-13
-:Version: 2.0.7
+:Date: 2016-07-21
+:Version: 2.1.0
 
 .. index:: CHANGELOG
 
@@ -18,6 +18,12 @@ More information can be found on GitHub in the `releases section
 
 Version History
 ===============
+
+2.1.0
+    * Get rid of ``git flow`` — users should switch their main branch to
+      ``master`` and delete ``develop``. This simplifies development and
+      branching for most use cases.
+    * Exit on errors in ``release``
 
 2.0.7
     * Make some minor changes to CONTRIBUTING.rst

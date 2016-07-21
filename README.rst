@@ -4,8 +4,8 @@ Python Project Template.  INSERT TAGLINE HERE.™
 :Info: This is the README file for the Python Project Template.
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2016, Chris Warrick.
-:Date: 2016-07-13
-:Version: 2.0.7
+:Date: 2016-07-21
+:Version: 2.1.0
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/python-project-template.svg?branch=master
@@ -18,8 +18,6 @@ Requirements
 
 * ``zsh`` installed (required by ``/release`` and ``/.pypt/localegen`` scripts)
 * Python with ``cookiecutter`` (initial generation), ``requests`` (required by ``/.pypt/{commitlog,ghrel}``) and ``twine`` (required by ``/release``) installed
-* `git-flow extensions by nvie <https://github.com/nvie/gitflow>`_ (alternatively you can manually alter the ``/release`` script, and that is much harder than
-  installing the extensions)
 * A git repository.  The PyPT is ready to go if you use GitHub.  If you do not
   want GitHub, edit the ``/PKGBUILD{,-2}{,-git}`` files and any other places
   where GitHub is mentioned, including this document which you should edit
@@ -54,15 +52,16 @@ The template contains the following files to get you started:
 * PKGBUILDs for the Arch Linux User Repository (AUR)
 * A state-of-the-art ``release`` script, the operations of which are:
 
-  * querying the current branch for version number
+  * querying the user for version number
   * updating ``/docs/CHANGELOG.rst``
   * bumping the version number in all the files, changing dates where necessary
   * copying over ``/docs/README.rst``,  ``/docs/CHANGELOG.rst`` and ``/docs/CONTRIBUTING.rst`` to ``/``
   * locale generation (via the ``.pypt/localegen`` script)
-  * running ``import $project`` and the testsuite
+  * running ``import $PROJECTLC`` and the testsuite
   * uploading a source distribution and a wheel to PyPI
-  * committing into git, finishing the ``git flow`` release
+  * committing into git and tagging
   * creating a GitHub Releases entry
+  * with hooks, updating the AUR package
 
 Getting up to speed in 12 easy steps
 ====================================
@@ -76,14 +75,18 @@ Getting up to speed in 12 easy steps
    2. ``/docs/CHANGELOG.rst`` to ``/CHANGELOG.rst``
 
 5. Modify ``/.pypt/config``, if needed.
-6. Generate a `GitHub Personal Access Token <https://github.com/settings/tokens>`_ and write it to a ``/.pypt/gh-token`` file.
+6. Generate a `GitHub Personal Access Token <https://github.com/settings/tokens>`_
+   in the ``repo`` scope and write it to a ``/.pypt/gh-token`` file. You may
+   reuse tokens between different repos running PyPT.
 7. Customize ``/setup.py`` to your liking.  You should pay attention to the
    classifiers and the commented-out parts.
 8. Customize ``requirements.txt``.
 9. If you are using PyQt or PySide, make sure to put your UI code in a ``ui``
     submodule.  Copy the ``pypt-extras/Qt/resources.py`` file to that
     submodule, even if you are not using resources now. Make sure to create a
-    ``.pro`` file with your sources and locales.
+    ``.pro`` file with your sources and locales. If you want to use the AUR
+    package updater, copy the hook to ``.pypt/hooks`` (change its name) and
+    modify it to fit your AUR workflow.
 10. Remove the ``pypt-extras`` directory if you don’t need anything else from it.
 11. If you have a ``PYPT-UPDATE`` script, add your new project to the list
     there.  If not, you may want to copy it from the repository root and set it up.
@@ -92,13 +95,9 @@ Getting up to speed in 12 easy steps
         source .pypt/config
         git init
         git remote add origin git@github.com:$GITUSER/$GITREPO
-        git flow init #(change version tag prefix to `v`)
         git add *
-        git checkout develop
         git commit -sm 'initial commit via @Kwpolska’s Python Project Template'
-        git checkout master
-        git merge --ff-only develop
-        git push -u origin master develop
+        git push -u origin master
 
 COPYRIGHT
 ---------

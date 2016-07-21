@@ -57,20 +57,8 @@ function cleanup_cmfn {
 
 status '*** Chris Warrick’s Release Scripts (PyPT)'
 
-branch=$(git rev-parse --abbrev-ref HEAD)
-if [[ $? != 0 ]]; then
-    error 'Cannot fetch the current branch.'
-    exit 2
-fi
-
-echo $branch | grep '^release/' > /dev/null
-if [[ $? != 0 ]]; then
-    error 'Not on a git-flow release branch.'
-    status 'Run: git flow release start [version number here]'
-    exit 2
-fi
-
-version=$(echo $branch | sed 's|^release/||')
+echo -n "Version number: "
+read version
 
 echo $version | grep '^[0-9]\{1,\}\.[0-9]\{1,\}\.[0-9]\{1,\}$' > /dev/null
 
@@ -196,10 +184,8 @@ cleanup
 git add -A --ignore-errors . || exit $?
 
 git commit -S -asF $cmfn2 || exit $?
-
-git flow release finish -s -m "Version $version" $version || exit $?
-git push || exit $?
-git push --tags || exit $?
+git tag -sm "Version $version" v$version || exit $?
+git push --follow-tags origin master || exit $?
 
 .pypt/ghrel $cmfn $PWD $GITUSER/$GITREPO v$version
 
