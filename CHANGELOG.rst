@@ -3,10 +3,10 @@ PyPT Changelog
 ==============
 :Info: This is the changelog for PyPT.
 :Author: Chris Warrick <chris@chriswarrick.com>
-:Copyright: © 2013-2016, Chris Warrick.
+:Copyright: © 2013-2017, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2016-07-21
-:Version: 2.1.1
+:Date: 2017-01-01
+:Version: 2.1.2
 
 .. index:: CHANGELOG
 
@@ -18,6 +18,9 @@ More information can be found on GitHub in the `releases section
 
 Version History
 ===============
+
+2.1.2
+    * Update © dates to 2017
 
 2.1.1
     * Fix ``commitlog`` crashing due to a regex glitch (turns out ``C(.*?)``
