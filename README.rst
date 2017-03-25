@@ -4,8 +4,8 @@ Python Project Template.  INSERT TAGLINE HERE.™
 :Info: This is the README file for the Python Project Template.
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2017, Chris Warrick.
-:Date: 2017-01-01
-:Version: 2.1.2
+:Date: 2017-03-25
+:Version: 2.1.3
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/python-project-template.svg?branch=master
@@ -47,8 +47,8 @@ The template contains the following files to get you started:
 * ``tests/`` containing some *Is My Python Sane?*-style tests (using ``py.test``)
 * An automated global update script (``.pypt/PYPT-UPDATE``)
 * Entry points configuration ready to be uncommented
-* Addons for Qt users (in ``pypt-extras/``)
-* A sample hook for AUR updates (in ``pypt-extras``)
+* Addons for Qt users (in ``pypt-extras/Qt``)
+* A sample hook for AUR updates (in ``pypt-extras/AUR``)
 * PKGBUILDs for the Arch Linux User Repository (AUR)
 * A state-of-the-art ``release`` script, the operations of which are:
 
@@ -85,8 +85,7 @@ Getting up to speed in 12 easy steps
     submodule.  Copy the ``pypt-extras/Qt/resources.py`` file to that
     submodule, even if you are not using resources now. Make sure to create a
     ``.pro`` file with your sources and locales. If you want to use the AUR
-    package updater, copy the hook to ``.pypt/hooks`` (change its name) and
-    modify it to fit your AUR workflow.
+    package updater, see the `AUR support`_ section.
 10. Remove the ``pypt-extras`` directory if you don’t need anything else from it.
 11. If you have a ``PYPT-UPDATE`` script, add your new project to the list
     there.  If not, you may want to copy it from the repository root and set it up.
@@ -98,6 +97,32 @@ Getting up to speed in 12 easy steps
         git add *
         git commit -sm 'initial commit via @Kwpolska’s Python Project Template'
         git push -u origin master
+
+AUR support
+===========
+
+This template includes full support for creating and updating AUR PKGBUILDs.
+Templates for stable and git packages are in the project directory.
+Furthermore, there are scripts to facilitate updating AUR packages. Those are:
+
+* /pypt-extras/AUR/hooks/post-release.hook
+* /pypt-extras/AUR/AURvm/aurvm_client.py
+* /pypt-extras/AUR/AURvm/aurvm_host.py
+* /pypt-extras/AUR/AURvm/aurvm_heartbeat.sh
+
+If you want to use those, copy (move) ``post-release.hook`` to
+``.pypt/hooks/post-release.hook``. If you are doing releases on an Arch Linux
+system, you may want to switch the default from remote to local updates.  If
+you are doing releases on any other Linux/\*nix system, you also need to copy
+the entire AURvm directory to ``.pypt/``, and put ``aurvm_host.py`` and
+``aurvm_heartbeat.sh`` in your ``aur-pkgbuilds`` directory.
+
+The scripts assume a very specific setup, which is as follows:
+
+* repos for AUR packages in ``~/git/aur-pkgbuilds``
+* ``UPDATE-REQUIREMENTS.py`` and ``aur.zsh`` scripts (see `Kwpolska/aur-pkgbuilds <https://github.com/Kwpolska/aur-pkgbuilds>`_)
+* An Arch Linux virtual machine that is accessible using ``ssh arch`` (in ``.ssh/config``)
+* Probably some others. Those were written for my custom system.
 
 COPYRIGHT
 ---------
@@ -114,7 +139,9 @@ commercial (a.k.a. proprietary) license, you must contact me first.
 * /.pypt/PYPT-UPDATE
 * /.pypt/README.rst
 * /.pypt/LICENSE.PyPT
-* /pypt-extras/AUR_post-release.hook
+* /pypt-extras/AUR/hooks/post-release.hook
+* /pypt-extras/AUR/AURvm/aurvm_client.py
+* /pypt-extras/AUR/AURvm/aurvm_host.py
 * /docs/CONTRIBUTING.rst
 * /CONTRIBUTING.rst
 * /release

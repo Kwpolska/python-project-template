@@ -10,7 +10,9 @@ HOWEVER, the following files must remain under the BSD license:
 * /.pypt/PYPT-UPDATE
 * /.pypt/README.rst
 * /.pypt/LICENSE.PyPT
-* /pypt-extras/AUR_post-release.hook
+* /pypt-extras/AUR/hooks/post-release.hook
+* /pypt-extras/AUR/AURvm/aurvm_client.py
+* /pypt-extras/AUR/AURvm/aurvm_host.py
 * /docs/CONTRIBUTING.rst
 * /CONTRIBUTING.rst
 * /release

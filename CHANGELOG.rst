@@ -5,8 +5,8 @@ PyPT Changelog
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2017, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2017-01-01
-:Version: 2.1.2
+:Date: 2017-03-25
+:Version: 2.1.3
 
 .. index:: CHANGELOG
 
@@ -18,6 +18,10 @@ More information can be found on GitHub in the `releases section
 
 Version History
 ===============
+
+2.1.3
+    * Create infrastructure to update AUR packages in an Arch virtual machine (``AURvm``)
+    * Fix some minor typos in ``release``
 
 2.1.2
     * Update © dates to 2017

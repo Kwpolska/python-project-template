@@ -149,15 +149,15 @@ status 'Generating locales...'
 
 status 'Importing...'
 python -c "import $PROJECTLC"
-if [[ $? == 1 ]]; then
+if [[ $? != 0 ]]; then
     error "Import failed.  Fix your code or don't come back."
     exit 1
 fi
 
 if [[ -e tests ]]; then
     status 'Running tests...'
-    py.test tests/
-    if [[ $? == 1 ]]; then
+    pytest tests/
+    if [[ $? != 0 ]]; then
         error "Tests failed.  Fix your code or don't come back."
         exit 1
     fi

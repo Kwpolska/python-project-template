@@ -1,0 +1,41 @@
+#!/bin/zsh
+. .pypt/config
+# To change default, move the ` || "$rln" == ""` condition wherever you desire
+# and change the capital letter in the prompt
+echo -n "Update AUR packages? [Remotely/locally/no] "
+read rln
+if [[ "$rln" == "N" || "$rln" == "n" ]]; then
+    exit 0
+fi
+if [[ "$rln" == "L" || "$rln" == "l" ]]; then
+    echo "Updating AUR packages..."
+    gitver=$(git describe --long | sed -E 's/([^-]*-g)/r\1/;s/-/./g;s/^v//g')
+
+    cp PKGBUILD ~/git/aur-pkgbuilds/$PROJECTLC/PKGBUILD
+    cd ~/git/aur-pkgbuilds
+    . ~/git/aur-pkgbuilds/aur.zsh
+
+    cd "$PROJECTLC"
+    commitaur "$PROJECT v$version"
+
+    cd "$PROJECTLC"-git
+    sed "s/pkgver=.*/pkgver=$gitver/" PKGBUILD -i
+    commitaur "$PROJECT v$version"
+
+    ./UPDATE-REQUIREMENTS.py
+    git commit -asm "$PROJECT v$version"
+    git push
+
+    echo "Done!"
+fi
+if [[ "$rln" == "R" || "$rln" == "r" || "$rln" == "" ]]; then
+    avout=""
+    echo "[local] Attempting to remote into Arch Linux VM (ssh arch)..."
+    while [[ "$avout" != "AURvm OK" ]]; do
+        echo "[local] Sending heartbeat..."
+        avout=$(ssh arch git/aur-pkgbuilds/aurvm_heartbeat.sh)
+    done
+    echo "[local] Sending data..."
+    .pypt/AURvm/aurvm_client.py | ssh arch git/aur-pkgbuilds/aurvm_host.py
+    echo "[local] Done!"
+fi
