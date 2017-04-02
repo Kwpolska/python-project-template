@@ -11,16 +11,18 @@ if [[ "$rln" == "L" || "$rln" == "l" ]]; then
     echo "Updating AUR packages..."
     gitver=$(git describe --long | sed -E 's/([^-]*-g)/r\1/;s/-/./g;s/^v//g')
 
-    cp PKGBUILD ~/git/aur-pkgbuilds/$PROJECTLC/PKGBUILD
+    cp PKGBUILD ~/git/aur-pkgbuilds/$AUR_PKGNAME/PKGBUILD
     cd ~/git/aur-pkgbuilds
     . ~/git/aur-pkgbuilds/aur.zsh
 
-    cd "$PROJECTLC"
+    cd $AUR_PKGNAME
     commitaur "$PROJECT v$version"
 
-    cd "$PROJECTLC"-git
-    sed "s/pkgver=.*/pkgver=$gitver/" PKGBUILD -i
-    commitaur "$PROJECT v$version"
+    if [[ "$AUR_GIT_PACKAGE" == "true" ]]; then
+        cd $AUR_PKGNAME_GIT
+        sed "s/pkgver=.*/pkgver=$gitver/" PKGBUILD -i
+        commitaur "$PROJECT v$version"
+    fi
 
     ./UPDATE-REQUIREMENTS.py
     git commit -asm "$PROJECT v$version"
@@ -36,6 +38,6 @@ if [[ "$rln" == "R" || "$rln" == "r" || "$rln" == "" ]]; then
         avout=$(ssh arch git/aur-pkgbuilds/aurvm_heartbeat.sh)
     done
     echo "[local] Sending data..."
-    .pypt/AURvm/aurvm_client.py | ssh arch git/aur-pkgbuilds/aurvm_host.py
+    .pypt/AURvm/aurvm_client.py $PROJECT $AUR_PKGNAME $AUR_PKGNAME_GIT $version $AUR_GIT_PACKAGE | ssh arch git/aur-pkgbuilds/aurvm_host.py
     echo "[local] Done!"
 fi

@@ -53,19 +53,22 @@ def commitaur(msg):
 
 data = base64.b64decode(sys.stdin.read().encode('utf-8'))
 data = json.loads(data.decode('utf-8'))
+if data['_api'] != '2':
+    print("API version does not match")
+
 msg = data['project'] + ' v' + data['version']
 sys.stderr.write("[host] Updating AUR packages...\n")
 sys.stderr.flush()
 
 os.chdir(BASEDIR)
-os.chdir(data['projectlc'])
+os.chdir(data['aur_pkgname'])
 with io.open('PKGBUILD', 'w', encoding='utf-8') as fh:
     fh.write(data['pkgbuild'])
 commitaur(msg)
 os.chdir(BASEDIR)
 
 if data['use_git']:
-    os.chdir(data['projectlc'] + '-git')
+    os.chdir(data['aur_pkgname_git'])
     subprocess.check_call(["sed", "s/pkgver=.*/pkgver=" + data['gitver'] + "/", "PKGBUILD", "-i"])
     commitaur(msg)
     os.chdir(BASEDIR)

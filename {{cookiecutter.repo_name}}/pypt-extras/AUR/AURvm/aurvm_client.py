@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # AURvm client script
-# Usage: ./aurvm_client.py $PROJECT $PROJECTLC $version use_git[true|false]
+# Usage: ./aurvm_client.py $PROJECT $AUR_PKGNAME $AUR_PKGNAME_GIT $version use_git[true|false]
 # Part of the Python Project Template.
 # Copyright © 2013-2017, Chris Warrick.
 # All rights reserved.
@@ -40,9 +40,9 @@ import subprocess
 import sys
 
 try:
-    _, project, projectlc, version, use_git = sys.argv
-except IndexError:
-    print("Usage: ./aurvm_client.py $PROJECT $PROJECTLC $version use_git[true|false]")
+    _, project, aur_pkgname, aur_pkgname_git, version, use_git = sys.argv
+except ValueError:
+    print("Usage: ./aurvm_client.py $PROJECT $AUR_PKGANME $AUR_PKGNAME_GIT $version use_git[true|false]")
 
 use_git = True if use_git == 'true' else False
 if use_git:
@@ -56,11 +56,13 @@ with io.open('PKGBUILD', 'r', encoding='utf-8') as fh:
 
 data = json.dumps({
     'project': project,
-    'projectlc': projectlc,
+    'aur_pkgname': aur_pkgname,
+    'aur_pkgname_git': aur_pkgname_git,
     'version': version,
     'use_git': use_git,
     'gitver': gitver,
-    'pkgbuild': pkgbuild
+    'pkgbuild': pkgbuild,
+    '_api': '2'
 }, ensure_ascii=True, sort_keys=True).encode('utf-8')
 
 print(base64.b64encode(data).decode('utf-8'))

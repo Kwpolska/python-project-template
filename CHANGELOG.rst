@@ -5,8 +5,8 @@ PyPT Changelog
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2017, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2017-03-25
-:Version: 2.1.3
+:Date: 2017-04-02
+:Version: 2.1.4
 
 .. index:: CHANGELOG
 
@@ -18,6 +18,11 @@ More information can be found on GitHub in the `releases section
 
 Version History
 ===============
+
+2.1.4
+    * Fix some bugs in AUR stuff
+    * Add new config variables: ``AUR_PKGNAME``, ``AUR_PKGNAME_GIT``, ``AUR_GIT_PACKAGE``
+    * Update AUR stuff when running ``PYPT-UPDATE``
 
 2.1.3
     * Create infrastructure to update AUR packages in an Arch virtual machine (``AURvm``)

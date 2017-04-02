@@ -3,9 +3,20 @@ PYPT_ROOT=$HOME/git/python-project-template/{{cookiecutter.repo_name}}
 PYPT_COMPONENTS=(release .pypt/commitlog .pypt/ghrel)
 PYPT_PROJECTS=("$HOME/git/pkgbuilder")  # fill in your own
 
+PYPT_AURVM_COMPONENTS=(hooks/post-release.hook AURvm/aurvm_client.py AURvm/aurvm_heartbeat.sh AURvm/aurvm_host.py)
+PYPT_AURVM_PROJECTS=("$HOME/git/cheqlist")  # fill in your own
+
 for p in $PYPT_PROJECTS; do
     echo "==> $p"
     for c in $PYPT_COMPONENTS; do
         cp -v $PYPT_ROOT/$c $p/$c
+    done
+done
+
+
+for p in $PYPT_AURVM_PROJECTS; do
+    echo "==> $p"
+    for c in $PYPT_AURVM_COMPONENTS; do
+        cp -v $PYPT_ROOT/pypt-extras/AUR/$c $p/.pypt/$c
     done
 done

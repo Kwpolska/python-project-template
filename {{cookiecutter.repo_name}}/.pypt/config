@@ -22,3 +22,10 @@ LOCALETYPE="none"
 # Python versions supported.
 PYTHON2=1
 PYTHON3=1
+
+# AUR package names.  You still need to change PKGBUILDs!
+AUR_PKGNAME=$PROJECTLC
+AUR_PKGNAME_GIT=$PROJECTLC"-git"
+
+# Whether or not to create AUR -git packages. m(true/false)
+AUR_GIT_PACKAGE="true"
