@@ -5,8 +5,8 @@ PyPT Changelog
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2017, Chris Warrick.
 :License: BSD (see /LICENSE or :doc:`Appendix B <LICENSE>`.)
-:Date: 2017-04-02
-:Version: 2.1.4
+:Date: 2017-04-09
+:Version: 2.1.5
 
 .. index:: CHANGELOG
 
@@ -18,6 +18,10 @@ More information can be found on GitHub in the `releases section
 
 Version History
 ===============
+
+2.1.5
+    * Add ``__main__.py``
+    * Update some parts of the PyPT README and ``setup.py``
 
 2.1.4
     * Fix some bugs in AUR stuff

@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-import sys
 import io
 from setuptools import setup, find_packages
 
@@ -24,14 +23,15 @@ setup(name='{{ cookiecutter.repo_name }}',
                    'Programming Language :: Python :: 3',
                    'Programming Language :: Python :: 3.3',
                    'Programming Language :: Python :: 3.4',
-                   'Programming Language :: Python :: 3.5'],
+                   'Programming Language :: Python :: 3.5',
+                   'Programming Language :: Python :: 3.6',
+                   ],
       packages=find_packages(exclude=('tests',)),
       include_package_data=True,
       install_requires=[],
-      # data_files=[('file', ['dest']),],
       # entry_points={
-           #'console_scripts': [
-               #'{{ cookiecutter.repo_name }} = {{ cookiecutter.repo_name }}.__main__:main',
-           #]
+           # 'console_scripts': [
+               # '{{ cookiecutter.repo_name }} = {{ cookiecutter.repo_name }}.__main__:main',
+           # ]
       # },
       )
