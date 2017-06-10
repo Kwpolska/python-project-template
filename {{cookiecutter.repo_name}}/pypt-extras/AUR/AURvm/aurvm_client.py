@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # AURvm client script
 # Usage: ./aurvm_client.py $PROJECT $AUR_PKGNAME $AUR_PKGNAME_GIT $version use_git[true|false]
 # Part of the Python Project Template.

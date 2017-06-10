@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # AURvm host script
 # Usage: base64-encoded JSON on stdin
 # Part of the Python Project Template.
