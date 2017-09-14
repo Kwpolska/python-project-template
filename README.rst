@@ -4,8 +4,8 @@ Python Project Template.  INSERT TAGLINE HERE.™
 :Info: This is the README file for the Python Project Template.
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2017, Chris Warrick.
-:Date: 2017-06-10
-:Version: 2.1.6
+:Date: 2017-09-14
+:Version: 2.1.7
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/python-project-template.svg?branch=master
@@ -70,7 +70,10 @@ Getting up to speed in 12 easy steps
 ====================================
 
 1. Create the repository for the project on GitHub and enable it on Travis CI.
-2. Install PyPT’s ``requirements.txt`` (in a virtualenv) and run ``cookiecutter``.
+2. Install PyPT’s ``requirements.txt`` (in a virtualenv) and run ``cookiecutter
+   /path/to/your/clone/of/python-project-template`` (in your Projects/git
+   directory/wherever you hold your projects).
+   .
 3. Modify all documents: match under/overlines, write real content.
 4. Copy: (when using the included ``release`` script, it happens automatically)
 
@@ -108,6 +111,9 @@ Getting up to speed in 12 easy steps
         git add *
         git commit -sm 'initial commit via @Kwpolska’s Python Project Template'
         git push -u origin master
+
+You should also create a virtualenv for your project. I recommend
+virtualenvwrapper to keep them in one place, outside of code repositories.
 
 AUR support
 ===========

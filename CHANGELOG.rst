@@ -4,8 +4,8 @@ PyPT Changelog
 :Info: This is the changelog for PyPT.
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2017, Chris Warrick.
-:Date: 2017-06-10
-:Version: 2.1.6
+:Date: 2017-09-14
+:Version: 2.1.7
 
 .. index:: CHANGELOG
 
@@ -17,6 +17,9 @@ More information can be found on GitHub in the `releases section
 
 Version History
 ===============
+
+2.1.7
+    * Very minor README update (everything else unaffected)
 
 2.1.6
     * Use Python 3 for AURvm client but ensure 2/3 compatibility
