@@ -4,14 +4,13 @@ Python Project Template.  INSERT TAGLINE HERE.™
 :Info: This is the README file for the Python Project Template.
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2017, Chris Warrick.
-:Date: 2017-09-14
-:Version: 2.1.7
+:Date: 2017-09-15
+:Version: 2.1.8
 
 .. index: README
 .. image:: https://travis-ci.org/Kwpolska/python-project-template.svg?branch=master
 
-USING THE TEMPLATE
-------------------
+.. contents::
 
 Requirements
 ============
@@ -21,21 +20,19 @@ Requirements
   ``/.pypt/{commitlog,ghrel}``) and ``twine`` (required by ``/release``)
   installed, as well as ``pytest``, ``coverage`` and ``pytest-cov`` — run ``pip
   install -r requirements.txt`` to install everything
-* A git repository. The PyPT is ready to go if you use GitHub. If you do not
-  want GitHub, edit the ``/PKGBUILD{,-2}{,-git}`` files and any other places
-  where GitHub is mentioned, including this document which you should edit
-  mentally.
+* A place to host Git repositories. GitHub is assumed, but can be changed
+  (documented below)
 * PGP/GPG setup (for signing release commits and tags)
 * Travis CI account (if you do not want Travis CI, remove ``/.travis.yml``)
 
-Contents
-========
+Template contents
+=================
 
 The template contains the following files to get you started:
 
 * pre-configured Sphinx with:
 
-  * ``CONTRIBUTING.rst`` guide (used by GitHub when sending a pull request or an issue)
+  * ``CONTRIBUTING.rst`` guide (shown by GitHub when sending a pull request or an issue)
   * ``LICENSE.rst``
   * an empty ``CHANGELOG.rst``
   * ``README.rst``
@@ -66,57 +63,11 @@ The template contains the following files to get you started:
   * creating a GitHub Releases entry
   * updating the AUR packages (by using hooks)
 
-Getting up to speed in 12 easy steps
-====================================
+Caveats and optional features
+=============================
 
-1. Create the repository for the project on GitHub and enable it on Travis CI.
-2. Install PyPT’s ``requirements.txt`` (in a virtualenv) and run ``cookiecutter
-   /path/to/your/clone/of/python-project-template`` (in your Projects/git
-   directory/wherever you hold your projects).
-   .
-3. Modify all documents: match under/overlines, write real content.
-4. Copy: (when using the included ``release`` script, it happens automatically)
-
-   1. ``/docs/README.rst`` to ``/README.rst`` and ``/README``
-   2. ``/docs/CHANGELOG.rst`` to ``/CHANGELOG.rst``
-
-5. Modify ``/.pypt/config``.
-6. Generate a `GitHub Personal Access Token <https://github.com/settings/tokens>`_
-   in the ``repo`` scope and write it to a ``/.pypt/gh-token`` file. You may
-   reuse tokens between different repos running PyPT.
-7. Customize ``/setup.py`` to your liking.  You should pay attention to the
-   classifiers and the commented-out parts.
-
-   If you’re making a **console app** with scripts/executables, uncomment the
-   ``entry_points`` sample as-is.  If you’re making a **GUI app**, change
-   ``console_scripts`` to ``gui_scripts``. In both cases, you should customize
-   ``__main__.py`` to your liking. Remember that ``main()`` must take no
-   positional/non-default arguments! If you do not want to create scripts,
-   remove ``__main__.py``.
-
-8. Customize ``requirements.txt``.
-9. **Extras:** If you are using **PyQt or PySide**, make sure to put your UI code in a
-   ``ui`` submodule.  Copy the ``pypt-extras/Qt/resources.py`` file to that
-   submodule, even if you are not using resources now. Make sure to create a
-   ``.pro`` file with your sources and locales. If you want to use the **AUR**
-   package updater, see the `AUR support`_ section.
-10. Remove the ``pypt-extras`` directory if you don’t need anything else from it.
-11. If you have a ``PYPT-UPDATE`` script, add your new project to the list
-    there.  If not, you may want to copy it from the repository root and set it up.
-12. Run the following commands::
-
-        source .pypt/config
-        git init
-        git remote add origin git@github.com:$GITUSER/$GITREPO
-        git add *
-        git commit -sm 'initial commit via @Kwpolska’s Python Project Template'
-        git push -u origin master
-
-You should also create a virtualenv for your project. I recommend
-virtualenvwrapper to keep them in one place, outside of code repositories.
-
-AUR support
-===========
+AUR support (hooks, VM automation)
+----------------------------------
 
 This template includes full support for creating and updating AUR PKGBUILDs.
 Templates for stable and git packages are in the project directory.
@@ -139,10 +90,130 @@ The scripts assume a very specific setup, which is as follows:
 * repos for AUR packages in ``~/git/aur-pkgbuilds``
 * ``UPDATE-REQUIREMENTS.py`` and ``aur.zsh`` scripts (see `Kwpolska/aur-pkgbuilds <https://github.com/Kwpolska/aur-pkgbuilds>`_)
 * An Arch Linux virtual machine that is accessible using ``ssh arch`` (in ``.ssh/config``)
-* Probably some others. Those were written for my custom system.
+* Probably some others. Those were written with only one use case in mind
+  (mine, unsurprisingly).
 
-COPYRIGHT
----------
+Qt support (locales, resources)
+-------------------------------
+
+If you are using PyQt or PySide, make sure to put your UI code in a
+``ui`` submodule.  Copy the ``pypt-extras/Qt/resources.py`` file to that
+submodule, even if you are not using resources now. Make sure to create a
+``.pro`` file with your sources and locales.
+
+If you do not want to use GitHub
+--------------------------------
+
+Search for mentions of GitHub (case-insensitively) and remove them. They
+appear in some auto-generated links, for example.  The ``release`` script
+assumes GitHub Releases, you can remove that part.
+
+If you do not want to publish to the Arch User Repository
+---------------------------------------------------------
+
+Remove ``PKGBUILD``, ``PKGBUILD-git``. Set ``aur_email`` to anything.
+
+If you do not want to use Travis CI
+-----------------------------------
+
+Remove ``.travis.yml`` and the badge in README files.
+
+Getting started
+===============
+
+One time setup: virtualenvs and project directory
+-------------------------------------------------
+
+If you don’t know how virtualenvs work and why you should use them, read `my guide about setting up a Python development environment <https://chriswarrick.com/blog/2017/07/03/setting-up-a-python-development-environment/#installing-packages>`_.
+
+You will need to prepare two places:
+
+1. A place where you store your projects (git repositories). You probably have
+   a folder for that already; if you don’t, use ``~/Projects`` or ``~/git``.
+2. Somewhere to store virtualenvs. Using virtualenvwrapper is recommended, but
+   not necessary. Don’t put your virtualenvs next to your code.
+
+Create a virtualenv for PyPT named ``cookiecutter``. Clone the PyPT GitHub
+repository to your project space. Run ``pip install -r
+python-project-template/requirements.txt`` to install PyPT’s requirements to
+your environment.
+
+Starting a new project
+----------------------
+
+Activate the ``cookiecutter`` virtualenv. While in your project home, run
+``cookiecutter python-project-template`` and answer the questions.
+(If ``aur_email`` and ``github_username`` don’t apply, set them to anything.)
+
+The script can optionally create an entry point to start your app from command
+line. Select ``cli`` or ``gui`` if you want one. Select ``none`` otherwise. If
+you don’t know why you would want one, read `my guide about entry_points <https://chriswarrick.com/blog/2014/09/15/python-apps-the-right-way-entry_points-and-scripts/>`_.
+
+Fixing the things that cannot be automated
+------------------------------------------
+
+* You need to modify all documents that are stored in ``docs/``. Some of them
+   need reST syntax fixes (title underlines). README needs real content.
+* Since your first commit will **not** use the ``release`` script, you need to copy files by hand:
+
+   1. ``/docs/README.rst`` to ``/README.rst`` and ``/README``
+   2. ``/docs/CHANGELOG.rst`` to ``/CHANGELOG.rst``
+
+* Modify ``/.pypt/config``. Verify that all settings are correct.
+* If you’re using GitHub, generate a `GitHub Personal Access Token
+  <https://github.com/settings/tokens>`_ in the ``repo`` scope and write it to a ``/.pypt/gh-token`` file. You may reuse tokens between different repos running PyPT. (This is used for automating GitHub Releases.)
+
+Preparing code
+--------------
+
+* If you have any code, you can put it in your package already. Use
+  ``template.py`` as a template for your Python files. (Remove it if you don’t
+  need it, or store it somewhere else.)
+* Customize ``/setup.py`` to your liking.  You should pay attention to the classifiers, requirements, and other things you desire to change.
+* If you enabled entry points, edit ``__main__.py``. Remember that ``main()`` must take no
+  positional/non-default arguments! If you do not want to create scripts and
+  don’t want command-line interfaces, remove ``__main__.py``.
+* Create a virtual environment for your project. Make sure to install
+  ``requirements.txt``.
+
+Extras
+------
+
+If you want to use AUR or Qt extras, check out the documentation (`Caveats and optional features`_).
+Remove the ``pypt-extras`` directory if you don’t need anything else from it.
+
+If you have a ``PYPT-UPDATE`` script, add your new project to the list there. If not, you may want to copy it from the repository root and set it up.
+
+Your first commit
+-----------------
+
+Run the following commands (assumes GitHub)::
+
+    source .pypt/config
+    git init
+    git remote add origin git@github.com:$GITUSER/$GITREPO
+    git add .
+    git commit -sm 'initial commit via @Kwpolska’s Python Project Template'
+    git push -u origin master
+
+Congratulations!
+
+If you’re ready to make your first release
+------------------------------------------
+
+Run ``./release`` and watch magic happen. Make sure your project virtualenv is
+active.
+
+But if this is your first project, you should check if:
+
+* GPG works on your system
+* you created the virtualenv with the Python version, installed requirements
+  and have activated it
+* git works, and you have a GitHub access token (if desired)
+* the optional features are configured properly
+
+License
+=======
 
 Python Project Template is licensed under a BSD-like license.  You are free to
 relicense your code to another open source license.  If you want to apply a

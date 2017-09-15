@@ -1,23 +1,25 @@
-#!/usr/bin/python
 # -*- encoding: utf-8 -*-
-# TODO: replace PROJECTNAME with the correct name
-# TODO: fix header and docstring
-# TODO: remove exception
-# HEADER LINE 1
-# HEADER LINE 2
-# HEADER LINE 3
+# {{ cookiecutter.project_name }} v{{ cookiecutter.version }}
+# {{ cookiecutter.project_short_description }}
+# Copyright © {{ cookiecutter.year }}, {{ cookiecutter.full_name }}.
 # See /LICENSE for licensing information.
-# This file is originally a part of the Python Project Template.
+# This file was adapted from Chris Warrick’s Python Project Template.
 
-"""Adapt Qt resources to Python version."""
+"""
+Adapt Qt resources to Python version.
+
+:Copyright: © {{ cookiecutter.year }}, {{ cookiecutter.full_name }}.
+:License: BSD (see /LICENSE).
+"""
+
+__all__ = ()
+
 import sys
 
-raise Exception("Please edit resources.py (see TODO tags) and remove me.")
-
 if sys.version_info[0] == 2:
-    import PROJECTNAME.ui.resources2  # NOQA
+    import {{ cookiecutter.repo_name }}.ui.resources2  # NOQA
 elif sys.version_info[0] == 3:
-    import PROJECTNAME.ui.resources3  # NOQA
+    import {{ cookiecutter.repo_name }}.ui.resources3  # NOQA
 else:
     print('FATAL: python version does not match `2` nor `3`')
     sys.exit(0)

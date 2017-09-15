@@ -8,5 +8,6 @@
     "project_short_description": "INSERT TAGLINE HERE.™",
     "release_date": "2017-01-01",
     "year": "2017",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "entry_point": ["none", "cli", "gui"]
 }

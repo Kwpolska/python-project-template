@@ -1,3 +1,5 @@
+requests
+twine
 pytest
 coverage
 pytest-cov
