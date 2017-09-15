@@ -15,9 +15,13 @@ Python Project Template.  INSERT TAGLINE HERE.™
 Requirements
 ============
 
+Python Project Template is made possible by `Cookiecutter
+<https://github.com/audreyr/cookiecutter>`_. To use the template, you will
+also need:
+
 * ``zsh`` installed (required by ``/release`` and ``/.pypt/localegen`` scripts)
-* Python with ``cookiecutter`` (initial generation), ``requests`` (required by
-  ``/.pypt/{commitlog,ghrel}``) and ``twine`` (required by ``/release``)
+* Python with ``requests`` (required by ``/.pypt/{commitlog,ghrel}``) and
+  ``twine`` (required by ``/release``)
   installed, as well as ``pytest``, ``coverage`` and ``pytest-cov`` — run ``pip
   install -r requirements.txt`` to install everything
 * A place to host Git repositories. GitHub is assumed, but can be changed
