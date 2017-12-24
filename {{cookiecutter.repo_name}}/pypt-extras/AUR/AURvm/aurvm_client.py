@@ -43,7 +43,8 @@ import sys
 try:
     _, project, aur_pkgname, aur_pkgname_git, version, use_git = sys.argv
 except ValueError:
-    print("Usage: ./aurvm_client.py $PROJECT $AUR_PKGANME $AUR_PKGNAME_GIT $version use_git[true|false]")
+    sys.stderr.write("Usage: ./aurvm_client.py $PROJECT $AUR_PKGANME $AUR_PKGNAME_GIT $version use_git[true|false]\n")
+    sys.exit(1)
 
 use_git = True if use_git == 'true' else False
 if use_git:
