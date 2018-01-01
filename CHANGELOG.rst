@@ -3,9 +3,9 @@ PyPT Changelog
 ==============
 :Info: This is the changelog for PyPT.
 :Author: Chris Warrick <chris@chriswarrick.com>
-:Copyright: © 2013-2017, Chris Warrick.
-:Date: 2017-09-15
-:Version: 2.1.8
+:Copyright: © 2013-2018, Chris Warrick.
+:Date: 2018-01-01
+:Version: 2.1.9
 
 .. index:: CHANGELOG
 
@@ -17,6 +17,9 @@ More information can be found on GitHub in the `releases section
 
 Version History
 ===============
+
+2.1.9
+    * Update © dates to 2018
 
 2.1.8
     * README overhaul
