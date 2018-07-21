@@ -20,5 +20,6 @@ def main():
     print("This is {{ cookiecutter.project_name }}.")
     print("You should customize __main__.py to your liking (or delete it).")
 
+
 if __name__ == '__main__':
     main()
