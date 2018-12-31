@@ -3,7 +3,7 @@
 # AURvm client script
 # Usage: ./aurvm_client.py $PROJECT $AUR_PKGNAME $AUR_PKGNAME_GIT $version use_git[true|false]
 # Part of the Python Project Template.
-# Copyright © 2013-2018, Chris Warrick.
+# Copyright © 2013-2019, Chris Warrick.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without

@@ -25,6 +25,7 @@ pip-log.txt
 .coverage
 .tox
 nosetests.xml
+.pytest_cache
 
 # Mr Developer
 .mr.developer.cfg
