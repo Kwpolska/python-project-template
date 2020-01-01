@@ -5,7 +5,7 @@ PyPT Changelog
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2020, Chris Warrick.
 :Date: 2020-01-01
-:Version: 2.1.11
+:Version: 2.1.12
 
 .. index:: CHANGELOG
 
@@ -17,6 +17,9 @@ More information can be found on GitHub in the `releases section
 
 Version History
 ===============
+
+2.1.12
+    * Update Python versions (support for 3.5+ by default)
 
 2.1.11
     * Update © dates to 2020
