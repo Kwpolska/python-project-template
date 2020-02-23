@@ -4,8 +4,8 @@ PyPT Changelog
 :Info: This is the changelog for PyPT.
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2020, Chris Warrick.
-:Date: 2020-01-01
-:Version: 2.1.12
+:Date: 2020-02-23
+:Version: 2.2.0
 
 .. index:: CHANGELOG
 
@@ -17,6 +17,13 @@ More information can be found on GitHub in the `releases section
 
 Version History
 ===============
+
+2.2.0
+    * Change license of the Template to 3-clause BSD + CC0. The 3-clause BSD
+      license applies to certain larger components (such as the ``release``
+      script), and the rest is covered by the CC0 license. The template files
+      are provided under CC0 and contain 3-clause BSD headers that can be
+      replaced by a different license.
 
 2.1.12
     * Update Python versions (support for 3.5+ by default)
