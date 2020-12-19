@@ -4,8 +4,8 @@ PyPT Changelog
 :Info: This is the changelog for PyPT.
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2020, Chris Warrick.
-:Date: 2020-02-23
-:Version: 2.2.0
+:Date: 2020-12-20
+:Version: 2.3.0
 
 .. index:: CHANGELOG
 
@@ -17,6 +17,10 @@ More information can be found on GitHub in the `releases section
 
 Version History
 ===============
+
+2.3.0
+    * Switch CI to GitHub Actions (due to Travis CI closing). Tests are run on
+      Ubuntu, Windows, and macOS, on multiple CPython 3 versions and PyPy.
 
 2.2.0
     * Change license of the Template to 3-clause BSD + CC0. The 3-clause BSD

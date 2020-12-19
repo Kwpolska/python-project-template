@@ -1,0 +1,31 @@
+name: PyPT CI
+on: [push, pull_request]
+
+jobs:
+  pypt:
+    name: Test PyPT (Python ${{ matrix.python-version }} on ${{ matrix.image }})
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.5, 3.6, 3.7, 3.8, 3.9, pypy-3.7]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '${{ matrix.python-version }}'
+      - name: Upgrade packaging stack
+        run: |
+          python -m pip install --upgrade-strategy eager -U pip setuptools wheel
+      - name: Install requirements
+        run: |
+          python -m pip install --upgrade-strategy eager -Ur requirements.txt
+      - name: Run Cookiecutter
+        run: |
+          python -m cookiecutter --no-input .
+      - name: Run tests (in project directory)
+        run: |
+          pytest tests/
+        working-directory: pypt

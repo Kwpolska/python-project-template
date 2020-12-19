@@ -4,11 +4,11 @@ Python Project Template.  INSERT TAGLINE HERE.™
 :Info: This is the README file for the Python Project Template.
 :Author: Chris Warrick <chris@chriswarrick.com>
 :Copyright: © 2013-2020, Chris Warrick.
-:Date: 2020-02-23
-:Version: 2.2.0
+:Date: 2020-12-20
+:Version: 2.3.0
 
 .. index: README
-.. image:: https://travis-ci.org/Kwpolska/python-project-template.svg?branch=master
+.. image:: https://github.com/Kwpolska/python-project-template/workflows/PyPT%20CI/badge.svg
 
 .. contents::
 
@@ -27,7 +27,6 @@ also need:
 * A place to host Git repositories. GitHub is assumed, but can be changed
   (documented below)
 * PGP/GPG setup (for signing release commits and tags)
-* Travis CI account (if you do not want Travis CI, remove ``/.travis.yml``)
 
 Template contents
 =================
@@ -48,6 +47,8 @@ The template contains the following files to get you started:
 * A ``setup.py`` file that could be good enough for people, and that supports
   ``entry_points`` (see https://go.chriswarrick.com/entry_points).
 * ``tests/`` containing some *Is My Python Sane?*-style tests (using ``pytest``)
+* GitHub Actions workflows for CI (that run tests using multiple OSes and
+  Python versions)
 * An automated global update script (``.pypt/PYPT-UPDATE``)
 * Entry points configuration ready to be uncommented (and a matching
   ``__main__.py`` file)
@@ -110,17 +111,13 @@ If you do not want to use GitHub
 
 Search for mentions of GitHub (case-insensitively) and remove them. They
 appear in some auto-generated links, for example.  The ``release`` script
-assumes GitHub Releases, you can remove that part.
+assumes GitHub Releases, you can remove that part.  Also remove ``.github``
+(which contains the GitHub Actions setup).
 
 If you do not want to publish to the Arch User Repository
 ---------------------------------------------------------
 
 Remove ``PKGBUILD``, ``PKGBUILD-git``. Set ``aur_email`` to anything.
-
-If you do not want to use Travis CI
------------------------------------
-
-Remove ``.travis.yml`` and the badge in README files.
 
 Getting started
 ===============

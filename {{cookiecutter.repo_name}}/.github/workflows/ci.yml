@@ -1,0 +1,37 @@
+name: {{ cookiecutter.project_name }} CI
+on: [push, pull_request]
+
+jobs:
+  tests:
+    name: Test {{ cookiecutter.project_name }} {%raw%}(Python ${{ matrix.python-version }} on ${{ matrix.image }})
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.5, 3.6, 3.7, 3.8, 3.9, pypy-3.7]
+        image:
+          - ubuntu-latest
+        include:
+          - python-version: 3.9
+            image: macos-latest
+          - python-version: 3.9
+            image: windows-latest
+    runs-on: '${{ matrix.image }}'
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '${{ matrix.python-version }}'
+      - name: Upgrade packaging stack
+        run: |
+          python -m pip install --upgrade-strategy eager -U pip setuptools wheel
+      - name: Install requirements{% endraw %}
+        run: |
+          python -m pip install --upgrade-strategy eager -Ur requirements.txt
+      - name: Install {{ cookiecutter.project_name }}
+        run: |
+          python -m pip install .
+      - name: Run tests
+        run: |
+          pytest --cov {{ cookiecutter.repo_name }} --cov-report term-missing tests/
