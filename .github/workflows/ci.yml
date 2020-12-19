@@ -3,7 +3,7 @@ on: [push, pull_request]
 
 jobs:
   pypt:
-    name: Test PyPT (Python ${{ matrix.python-version }} on ${{ matrix.image }})
+    name: Test PyPT (Python ${{ matrix.python-version }})
     strategy:
       fail-fast: false
       matrix:
@@ -29,3 +29,10 @@ jobs:
         run: |
           pytest tests/
         working-directory: pypt
+      - name: Install tree command
+        run: |
+          sudo apt-get update
+          sudo apt-get install tree
+      - name: Show directory tree
+        run: |
+          tree pypt
