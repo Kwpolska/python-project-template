@@ -3,9 +3,9 @@ Python Project Template.  INSERT TAGLINE HERE.™
 ===============================================
 :Info: This is the README file for the Python Project Template.
 :Author: Chris Warrick <chris@chriswarrick.com>
-:Copyright: © 2013-2020, Chris Warrick.
-:Date: 2020-12-20
-:Version: 2.3.0
+:Copyright: © 2013-2021, Chris Warrick.
+:Date: 2021-01-01
+:Version: 2.3.1
 
 .. index: README
 .. image:: https://github.com/Kwpolska/python-project-template/workflows/PyPT%20CI/badge.svg
@@ -260,7 +260,7 @@ you are also free to use a commercial license.
 3-CLAUSE BSD LICENSE
 --------------------
 
-Copyright © 2013-2020, Chris Warrick.
+Copyright © 2013-2021, Chris Warrick.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
