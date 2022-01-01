@@ -3,7 +3,7 @@
 # AURvm host script
 # Usage: base64-encoded JSON on stdin
 # Part of the Python Project Template.
-# Copyright © 2013-2021, Chris Warrick.
+# Copyright © 2013-2022, Chris Warrick.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
