@@ -3,7 +3,7 @@ Python Project Template.  INSERT TAGLINE HERE.™
 ===============================================
 :Info: This is the README file for the Python Project Template.
 :Author: Chris Warrick <chris@chriswarrick.com>
-:Copyright: © 2013-2022, Chris Warrick.
+:Copyright: © 2013-2023, Chris Warrick.
 :Date: 2022-01-01
 :Version: 2.3.2
 
@@ -260,7 +260,7 @@ you are also free to use a commercial license.
 3-CLAUSE BSD LICENSE
 --------------------
 
-Copyright © 2013-2022, Chris Warrick.
+Copyright © 2013-2023, Chris Warrick.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

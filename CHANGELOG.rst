@@ -3,9 +3,9 @@ PyPT Changelog
 ==============
 :Info: This is the changelog for PyPT.
 :Author: Chris Warrick <chris@chriswarrick.com>
-:Copyright: © 2013-2022, Chris Warrick.
-:Date: 2022-01-01
-:Version: 2.3.2
+:Copyright: © 2013-2023, Chris Warrick.
+:Date: 2023-01-01
+:Version: 2.3.3
 
 .. index:: CHANGELOG
 
@@ -17,6 +17,9 @@ More information can be found on GitHub in the `releases section
 
 Version History
 ===============
+
+2.3.3
+    * Update © dates to 2023
 
 2.3.2
     * Update © dates to 2022

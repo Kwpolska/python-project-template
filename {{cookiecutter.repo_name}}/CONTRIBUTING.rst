@@ -2,7 +2,7 @@
 Appendix A. Contribution rules
 ==============================
 :Info: Those are the contribution rules for {{ cookiecutter.project_name }}.
-:Copyright: © 2012-2022, Chris Warrick.
+:Copyright: © 2012-2023, Chris Warrick.
 :License: 3-clause BSD
 
 .. index:: contributing
