@@ -12,6 +12,13 @@ Python Project Template.  INSERT TAGLINE HERE.™
 
 .. contents::
 
+This project is no longer maintained
+====================================
+
+Many of the practices presented in this template, such as setup.py, are not cool anymore.
+
+But honestly, neither is Python. And especially Python packaging.
+
 Requirements
 ============
 
